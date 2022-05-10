@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    // enemyhealth
     public int startingHealth = 100;
     public int currentHealth;
 
@@ -11,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     EnemyAttack enemyAttack;
    // public float flashSpeed = 5f;
    // public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+   
 
     public float sinkSpeed = 1f;
 
