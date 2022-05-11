@@ -9,28 +9,38 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth;
 
     private Animator m_anim;
+
     EnemyAttack enemyAttack;
-   // public float flashSpeed = 5f;
-   // public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
-   
+    PlayerHealth playerHealth;
+
+    // public float flashSpeed = 5f;
+    // public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+
+    // 데미지 텍스트 표시를 위한 오브젝트 추가
+    public GameObject hudDamageText;
+    public Transform hudPos;
 
     public float sinkSpeed = 1f;
 
     public bool isDead;
     bool isSinking;
-    bool damaged;
 
     private void Awake()
     {
         currentHealth = startingHealth;
         m_anim = GetComponent<Animator>();
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
     }
 
     public void TakeDamage(int amount)
     {
-        damaged = true;
+        GameObject hudText = Instantiate(hudDamageText);
+        hudText.transform.position = hudPos.position;
+        hudText.GetComponent<DamageText>().damage = amount;
+
         m_anim.SetTrigger("isGetHit");
         currentHealth -= amount;
+
 
         // 몬스터 죽음 
         if (currentHealth <= 0 && !isDead)
@@ -58,7 +68,6 @@ public class EnemyHealth : MonoBehaviour
 
     private void Update()
     {
-        damaged = false;
         if(isSinking)
         {
             transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
@@ -68,7 +77,9 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         isDead = true;
-        //enemymove.nav.Stop();
+
+        // 몬스터가 죽었을 경우 플레이어의 체력 회복
+        playerHealth.recovery_strength();
 
         transform.GetChild(0).GetComponent<BoxCollider>().isTrigger = true;
 
@@ -79,9 +90,9 @@ public class EnemyHealth : MonoBehaviour
     {
         GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
-
-        isSinking = true;
-
+        
         Destroy(GameObject.Find("Slime"), 2f);
+        
+        isSinking = true;
     }
 }

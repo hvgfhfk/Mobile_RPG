@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
     // 죽었는지 확인
     bool isdead;
     // 데미지 입었는지 확인 (player)
-    bool damaged;
+    public bool damaged;
 
     private void Awake()
     {
@@ -55,14 +55,15 @@ public class PlayerHealth : MonoBehaviour
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
         damaged = false;
-        playerMovement.OnDamageUp();
+
     }
 
     public void TakeDamage(int amount)
     {
         // 공격을 받으면 true
         damaged = true;
-        playerMovement.OnDamageDown();
+        playerMovement.attacking = false;
+        playerMovement.dashing = false;
         // 공격 받으면 손실
         currentHealth -= amount;
         // 체력 게이지에 변경된 값을 표시
@@ -74,11 +75,6 @@ public class PlayerHealth : MonoBehaviour
             // Death 함수 호출
             Death();
         }
-        else
-        {
-            // 죽은게 아니면
-            anim.SetTrigger("Damage");
-        }
     }
 
     void Death()
@@ -89,6 +85,15 @@ public class PlayerHealth : MonoBehaviour
         anim.SetTrigger("Die");
         // 움직임 스크립트 비활성화
         playerMovement.enabled = false;
+    }
+
+    public void recovery_strength()
+    { // 체력 회복
+        if(currentHealth <= startingHealth)
+        {
+            currentHealth += 20;
+            healthSlider.value = currentHealth;
+        }
     }
 
 }

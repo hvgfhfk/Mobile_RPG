@@ -524,6 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478c2bfed6a02422c80859062cf571e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nav: {fileID: 0}
   range: 10
 --- !u!114 &3906511633026495754
 MonoBehaviour:
@@ -539,7 +540,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   currentHealth: 0
+  hudDamageText: {fileID: 7117225865102514734, guid: b90c9897738e243408230482d99928b4,
+    type: 3}
+  hudPos: {fileID: 3906511633026495752}
   sinkSpeed: 1
+  isDead: 0
 --- !u!114 &3906511633026495755
 MonoBehaviour:
   m_ObjectHideFlags: 0

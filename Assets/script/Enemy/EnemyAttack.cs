@@ -60,6 +60,4 @@ public class EnemyAttack : MonoBehaviour
             playerHealth.TakeDamage(attackDamage);
         }
     }
-
-
 }

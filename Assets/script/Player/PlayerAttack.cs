@@ -60,21 +60,6 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public void SkillAttack()
-    {
-        List<Collider> targetList = new List<Collider>(skillTarget.targetList);
-
-        foreach(Collider one in targetList)
-        {
-            EnemyHealth enemy = one.GetComponent<EnemyHealth>();
-
-            if(enemy != null)
-            {
-                StartCoroutine(enemy.StartDamage(SkillDamage, transform.position, 1f, 2f));
-            }
-        }
-    }
-
     void PlayRandomVoice(string[] attackSound)
     {
         int rand = UnityEngine.Random.Range(0, attackSound.Length);

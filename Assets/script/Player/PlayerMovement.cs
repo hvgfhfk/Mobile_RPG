@@ -8,9 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     protected Animator avatar;
     protected PlayerAttack playerAttack;
-    //protected PlayerHealth playerHealth;
-
-    //public GameObject NormalHit;
+    protected Effect effect;
 
     float lastAttackTime, lastDashTime;
 
@@ -21,12 +19,13 @@ public class PlayerMovement : MonoBehaviour
 
     public bool attacking = false;
     public bool dashing = false;
-    public bool isDamage = false;
 
     private void Start()
     {
         avatar = GetComponent<Animator>();
         playerAttack = GetComponent<PlayerAttack>();
+        // 게임 오브젝트 effect를 찾고 그 안에 effect 스크립트를 참3
+        effect = GameObject.Find("Effect").GetComponent<Effect>();
     }
 
     public void onStickChanged(Vector2 stickPos)
@@ -63,12 +62,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnAttackDown()
     {
-        if(!isDamage)
-        {
-            attacking = true;
-            avatar.SetBool("Combo", true);
-            StartCoroutine(StartAttack());
-        }
+        attacking = true;
+        avatar.SetBool("Combo", true);
+        StartCoroutine(StartAttack());
     }
 
     public void OnAttackUp()
@@ -80,15 +76,16 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator StartAttack()
     {
-        if (Time.time - lastAttackTime > 1f && !isDamage)
+        if (Time.time - lastAttackTime > 1f)
         {
             lastAttackTime = Time.time; // 선언된 시점부터 시간 계산
             while (attacking)
             {
                 avatar.SetTrigger("AttackStart");
                 playerAttack.NormalAttack();
+                effect.Normal_effect();
                 //Instantiate(NormalHit, transform.position, Quaternion.identity);
-                
+
                 yield return new WaitForSeconds(1f);
             }
         }
@@ -96,26 +93,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnDashDown()
     {
-        if(Time.time - lastDashTime > 1f && !isDamage)
+        
+        if (Time.time - lastDashTime > 3.0f)
         {
-            lastDashTime = Time.time;
             dashing = true;
+            lastDashTime = Time.time;
             avatar.SetTrigger("Dash");
             playerAttack.DashAttack();
+            effect.dashing_Effect();
         }
     }
 
     public void OnDashUp()
     {
         dashing = false;
-    }
-
-    public void OnDamageDown()
-    {
-        isDamage = true;
-    }
-    public void OnDamageUp()
-    {
-        isDamage = false;
     }
 }
