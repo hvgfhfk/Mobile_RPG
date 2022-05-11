@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
 
             if(enemy != null)
             {
-                StartCoroutine(enemy.StartDamage(DashDamage, transform.position, 1f, 2f));
+                StartCoroutine(enemy.StartDamage(DashDamage, transform.position, 0.1f, 0.1f));
             }
         }
     }

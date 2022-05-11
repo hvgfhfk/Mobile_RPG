@@ -34,11 +34,13 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        m_anim.SetTrigger("isGetHit");
+
         GameObject hudText = Instantiate(hudDamageText);
         hudText.transform.position = hudPos.position;
         hudText.GetComponent<DamageText>().damage = amount;
 
-        m_anim.SetTrigger("isGetHit");
+        
         currentHealth -= amount;
 
 
@@ -49,7 +51,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public IEnumerator StartDamage(int damage, Vector3 playerPosition, float delay, float pushBack)
+    public IEnumerator StartDamage(int damage, Vector3 playerPosition, float delay, float pushBack) 
     {
         yield return new WaitForSeconds(delay);
 
