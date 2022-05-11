@@ -90,7 +90,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void StartSinking()
     {
-        GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+       // GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         
         Destroy(GameObject.Find("Slime"), 2f);

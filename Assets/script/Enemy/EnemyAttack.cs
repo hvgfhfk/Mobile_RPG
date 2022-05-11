@@ -14,6 +14,7 @@ public class EnemyAttack : MonoBehaviour
     Animator m_anim;
 
     bool playerInRange;
+    bool anim_attack;
     float timer;
 
     private void Awake()
@@ -42,9 +43,13 @@ public class EnemyAttack : MonoBehaviour
 
     private void Update()
     {
+        Damage();
+    }
+    public void Damage()
+    {
         timer += Time.deltaTime;
-
-        if(timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
+        //timeBetweenAttacks
+        if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
         {
             // attack()
             Attack();
@@ -55,7 +60,7 @@ public class EnemyAttack : MonoBehaviour
     {
         timer = 0f;
 
-        if(playerHealth.currentHealth > 0 && !m_anim.GetCurrentAnimatorStateInfo(0).IsName("Damage"))
+        if(playerHealth.currentHealth > 0)
         {
             playerHealth.TakeDamage(attackDamage);
         }
