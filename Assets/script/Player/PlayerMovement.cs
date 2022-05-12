@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     protected Animator avatar;
     protected PlayerAttack playerAttack;
+
     protected Effect effect;
 
     float lastAttackTime, lastDashTime;

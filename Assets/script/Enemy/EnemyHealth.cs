@@ -83,7 +83,8 @@ public class EnemyHealth : MonoBehaviour
         // 몬스터가 죽었을 경우 플레이어의 체력 회복
         playerHealth.recovery_strength();
 
-        transform.GetChild(0).GetComponent<BoxCollider>().isTrigger = true;
+        transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
+        transform.GetComponent<SphereCollider>().enabled = false;
 
         StartSinking();
     }
@@ -92,8 +93,13 @@ public class EnemyHealth : MonoBehaviour
     {
        // GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
-        
-        Destroy(GameObject.Find("Slime"), 2f);
+
+        if(isDead)
+        {
+            Destroy(gameObject, 2f);
+        }
+
+       // Destroy(GameObject.Find("Slime"), 2f);
         
         isSinking = true;
     }

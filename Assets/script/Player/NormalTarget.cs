@@ -12,6 +12,17 @@ public class NormalTarget : MonoBehaviour
         targetList = new List<Collider>();
     }
 
+    private void Update()
+    {
+        for (int i = targetList.Count - 1; i >= 0; i--)
+        {
+            if (targetList[i] == null)
+            {
+                targetList.RemoveAt(i);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         targetList.Add(other);
@@ -20,6 +31,8 @@ public class NormalTarget : MonoBehaviour
     // 공격 반경을 벗어나면 객체 제거
     private void OnTriggerExit(Collider other)
     {
+
         targetList.Remove(other);
+
     }
 }

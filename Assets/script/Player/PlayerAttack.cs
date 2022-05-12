@@ -6,12 +6,13 @@ public class PlayerAttack : MonoBehaviour
 {
     // 플레이어가 몬스터에게 주는 데미지 수
     public int NormalDamage = 10;
-    public int SkillDamage = 30;
     public int DashDamage = 30;
 
     // 캐릭터의 공격 반경
     public NormalTarget normalTarget;
     public SkillTarget skillTarget;
+
+    //public EnemyHealth enemy;
 
     public AudioSource audioSource;
 
@@ -19,6 +20,7 @@ public class PlayerAttack : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
+
 
     public void NormalAttack()
     {
@@ -40,6 +42,8 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
+
+
 
     public void DashAttack()
     {
