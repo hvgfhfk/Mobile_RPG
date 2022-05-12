@@ -1,6 +1,8 @@
 using System.Collections;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 [RequireComponent(typeof(Animator))]
 
@@ -108,5 +110,10 @@ public class PlayerMovement : MonoBehaviour
     public void OnDashUp()
     {
         dashing = false;
+    }
+
+    public void OnHomeDown()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 }

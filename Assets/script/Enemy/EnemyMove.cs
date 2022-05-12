@@ -14,8 +14,8 @@ public class EnemyMove : MonoBehaviour
     public UnityEngine.AI.NavMeshAgent nav;
     EnemyAttack enemyattack;
 
-    bool isDead;
-
+    // 죽음 확인
+    public bool isDead;
     // 사거리
     public float traceDist = 10.0f;
 
@@ -26,9 +26,7 @@ public class EnemyMove : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-
         anim = GetComponent<Animator>();
-        isDead = GetComponent<EnemyHealth>().isDead;
         enemyattack = GetComponent<EnemyAttack>();
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
@@ -54,6 +52,10 @@ public class EnemyMove : MonoBehaviour
             else if(dist <= traceDist)
             {
                 curState = CurrentState.trace;
+            }
+            else if(isDead)
+            {
+                curState = CurrentState.dead;
             }
             else
             {
@@ -84,10 +86,9 @@ public class EnemyMove : MonoBehaviour
                     nav.Stop();
                     anim.SetBool("isTrace", false);
                     anim.SetBool("isAttack", true);
-                    
                     break;
                 case CurrentState.dead:
-                    nav.enabled = false;
+
                     break;
             }
             yield return null;

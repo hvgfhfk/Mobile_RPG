@@ -20,6 +20,10 @@ public class EnemyHealth : MonoBehaviour
     public GameObject hudDamageText;
     public Transform hudPos;
 
+    public GameObject itemPrefab;
+
+    public System.Action onDie;
+
     public float sinkSpeed = 1f;
 
     public bool isDead;
@@ -80,27 +84,38 @@ public class EnemyHealth : MonoBehaviour
     {
         isDead = true;
 
-        // 몬스터가 죽었을 경우 플레이어의 체력 회복
-        playerHealth.recovery_strength();
-
         transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
         transform.GetComponent<SphereCollider>().enabled = false;
 
-        StartSinking();
+        // 몬스터가 죽었을 경우 플레이어의 체력 회복
+        playerHealth.recovery_strength();
+        Destroy(gameObject);
+        DropItem();
+        this.onDie();
+        //StartSinking();
     }
 
-    public void StartSinking()
+    /*public void StartSinking()
     {
        // GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
-
         if(isDead)
         {
-            Destroy(gameObject, 2f);
+            GetComponent<Rigidbody>().isKinematic = true;
+            Destroy(gameObject);
+            isSinking = true;
         }
 
        // Destroy(GameObject.Find("Slime"), 2f);
-        
-        isSinking = true;
+    }*/
+
+    void DropItem()
+    {
+        var Diamond = Instantiate<GameObject>(this.itemPrefab);
+        Diamond.transform.position = this.gameObject.transform.position;
+        Diamond.SetActive(false);
+        this.onDie = () =>
+        {
+            Diamond.SetActive(true);
+        };
     }
 }

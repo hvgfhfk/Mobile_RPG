@@ -526,6 +526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curState: 0
   nav: {fileID: 0}
+  isDead: 0
   traceDist: 10
   attackDist: 1.5
 --- !u!114 &3906511633026495754
@@ -545,6 +546,8 @@ MonoBehaviour:
   hudDamageText: {fileID: 7117225865102514734, guid: b90c9897738e243408230482d99928b4,
     type: 3}
   hudPos: {fileID: 3906511633026495752}
+  itemPrefab: {fileID: 8323447298286703196, guid: f91fb51e84f2e4d469230bc8cc718b3b,
+    type: 3}
   sinkSpeed: 1
   isDead: 0
 --- !u!114 &3906511633026495755
@@ -559,7 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0566471ea093d4ac3af5c27d9ef1ae43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenAttacks: 5
+  timeBetweenAttacks: 3
   attackDamage: 10
 --- !u!135 &2499114763600718902
 SphereCollider:
