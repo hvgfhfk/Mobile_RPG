@@ -20,7 +20,7 @@ public class items : MonoBehaviour
 
             // LobbyButton.instance.getDiamond(100);
             Destroy(this.gameObject);
-            getDia(100);
+           // getDia(100);
         }
     }
 
