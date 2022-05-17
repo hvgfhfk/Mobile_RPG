@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
+using System.IO;
 
 public class xmltest : MonoBehaviour
 {
     private void Start()
     {
-        CreateXml();
+        string filepath = Application.dataPath.ToString() + "/Resources/Character.xml";
+
+        if(!System.IO.File.Exists(filepath))
+        {
+            CreateXml();
+        }
+
+       // CreateXml();
     }
 
     void CreateXml()
@@ -29,11 +37,11 @@ public class xmltest : MonoBehaviour
         child.AppendChild(lv);
 
         XmlElement exp = xmlDoc.CreateElement("Exp");
-        exp.InnerText = "1";
+        exp.InnerText = "0";
         child.AppendChild(exp);
 
         XmlElement coin = xmlDoc.CreateElement("coin");
-        coin.InnerText = "1";
+        coin.InnerText = "100";
         child.AppendChild(coin);
 
         xmlDoc.Save("./Assets/Resources/Character.xml");
