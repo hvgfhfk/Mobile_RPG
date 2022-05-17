@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Xml;
+using System;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -29,15 +32,23 @@ public class EnemyHealth : MonoBehaviour
     public bool isDead;
     bool isSinking;
 
+
+
     private void Awake()
     {
         currentHealth = startingHealth;
         m_anim = GetComponent<Animator>();
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+      //  LoadLvXml();
+    }
+
+    private void Start()
+    {
     }
 
     public void TakeDamage(int amount)
     {
+
         m_anim.SetTrigger("isGetHit");
 
         GameObject hudText = Instantiate(hudDamageText);
@@ -92,21 +103,8 @@ public class EnemyHealth : MonoBehaviour
         Destroy(gameObject);
         DropItem();
         this.onDie();
-        //StartSinking();
+        GetExpText(10.0f);
     }
-
-    /*public void StartSinking()
-    {
-       // GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        if(isDead)
-        {
-            GetComponent<Rigidbody>().isKinematic = true;
-            Destroy(gameObject);
-            isSinking = true;
-        }
-
-       // Destroy(GameObject.Find("Slime"), 2f);
-    }*/
 
     void DropItem()
     {
@@ -117,5 +115,45 @@ public class EnemyHealth : MonoBehaviour
         {
             Diamond.SetActive(true);
         };
+    }
+
+    public void GetExpText(float PlayerGetExp)
+    {
+        if (GameManager.instance.Exp <= GameManager.instance.MaxExp)
+        {
+            GameManager.instance.Exp += PlayerGetExp;
+            if (GameManager.instance.Exp >= GameManager.instance.MaxExp)
+            {
+                GameManager.instance.Exp = 0f;
+                GameManager.instance.Lv += 1;
+              //  SaveLvXml();
+            }
+            //   ExpText.text = Exp + " / " + MaxExp;
+
+            Debug.Log("Now Lv : " + GameManager.instance.Lv);
+            Debug.Log("Now Exp : " + GameManager.instance.Exp);
+
+            SaveLvXml();
+        } 
+    }
+
+
+    public void SaveLvXml()
+    {
+        TextAsset textAsset = (TextAsset)Resources.Load("Character");
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(textAsset.text);
+
+        XmlNodeList nodes = xmlDoc.SelectNodes("CharacterInfo/Character");
+        XmlNode character = nodes[0];
+
+        // character.SelectSingleNode("Exp").InnerText = "50";
+        character.SelectSingleNode("Level").InnerText = Convert.ToString(GameManager.instance.Lv); // 저장할 수치
+        character.SelectSingleNode("Exp").InnerText = Convert.ToString(GameManager.instance.Exp); // 저장할 수치
+
+        xmlDoc.Save("./Assets/Resources/Character.xml");
+
+        Debug.Log("SaveLvXml : Lv : " + GameManager.instance.Lv);
+        Debug.Log("SaveExpXml : EXP : " + GameManager.instance.Exp);
     }
 }

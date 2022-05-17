@@ -2,7 +2,7 @@
 <CharacterInfo>
   <Character>
     <Level>1</Level>
-    <Exp>1</Exp>
-    <coin>1</coin>
+    <Exp>50</Exp>
+    <coin>100</coin>
   </Character>
 </CharacterInfo>

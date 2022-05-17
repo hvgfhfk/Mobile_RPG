@@ -36,7 +36,7 @@ public class xmltest : MonoBehaviour
         coin.InnerText = "1";
         child.AppendChild(coin);
 
-        xmlDoc.Save("./Assets/Script/Data/Character.xml");
+        xmlDoc.Save("./Assets/Resources/Character.xml");
 
     }
 }

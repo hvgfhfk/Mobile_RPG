@@ -7,22 +7,22 @@ public class xmlSave : MonoBehaviour
 {
     private void Start()
     {
-        SaveOverLapXml();
+      //  SaveOverLapXml();
     }
 
     void SaveOverLapXml()
     {
-        TextAsset textAsset = (TextAsset)Resources.Load("Character");
+       /* TextAsset textAsset = (TextAsset)Resources.Load("Character");
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.LoadXml(textAsset.text);
 
-        XmlNodeList nodes = xmlDoc.SelectNodes("ChearacterInfo/Character");
+        XmlNodeList nodes = xmlDoc.SelectNodes("CharacterInfo/Character");
         XmlNode character = nodes[0];
 
-        character.SelectSingleNode("lv").InnerText = "5";
+        character.SelectSingleNode("Level").InnerText = "5";
         character.SelectSingleNode("Exp").InnerText = "50";
-        character.SelectSingleNode("Coin").InnerText = "200";
+        character.SelectSingleNode("coin").InnerText = "200";
 
-        xmlDoc.Save("./Character.xml");
+        xmlDoc.Save("./Assets/Resources/Character.xml");*/
     }
 }
