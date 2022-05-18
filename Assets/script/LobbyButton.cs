@@ -9,6 +9,7 @@ public class LobbyButton : MonoBehaviour
 
     public void StartButtonOn()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadSceneAsync("SampleScene");
+       // SceneManager.LoadScene("SampleScene");
     }
 }
