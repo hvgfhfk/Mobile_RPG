@@ -13,8 +13,9 @@ public class items : MonoBehaviour
     private void Awake()
     {
         DiamondText = GetComponent<Text>();
+        nowDiamond = PlayerPrefs.GetInt("Diamond"); // 변수에 다이아 저장한거 불러오기
 
-        LoadOverXml();
+      //  LoadOverXml();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,49 +26,13 @@ public class items : MonoBehaviour
 
             Destroy(this.gameObject);
             getDia(100);
-            SaveOverCoinCount();
+
+            PlayerPrefs.SetInt("Diamond", nowDiamond); // 다이아 코인 저장
         }
     }
 
     public void getDia(int newdia)
     {
         nowDiamond += newdia;
-    }
-
-    public void SaveOverCoinCount() // 세이브 xml
-    {
-        TextAsset textAsset = (TextAsset)Resources.Load("Character");
-        XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(textAsset.text);
-
-        XmlNodeList nodes = xmlDoc.SelectNodes("CharacterInfo/Character");
-        XmlNode character = nodes[0];
-
-        // character.SelectSingleNode("Exp").InnerText = "50";
-        character.SelectSingleNode("coin").InnerText = Convert.ToString(nowDiamond); // 저장할 수치
-
-        xmlDoc.Save("./Assets/Resources/Character.xml");
-
-     //   Debug.Log("Save : " + nowDiamond);
-    //    Debug.Log(character.SelectSingleNode("coin").InnerText);
-    }
-
-    public void LoadOverXml() // 로드 xml
-    {
-        TextAsset textasset = (TextAsset)Resources.Load("Character");
-       // Debug.Log(textasset);
-        XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(textasset.text);
-
-        XmlNodeList nodes = xmlDoc.SelectNodes("CharacterInfo/Character");
-
-        foreach (XmlNode node in nodes)
-        {
-            nowDiamond = Convert.ToInt32(node.SelectSingleNode("coin").InnerText);
-
-           // Convert.ToString
-      //      Debug.Log("LoadDiamond : " + nowDiamond);
-            
-        }
     }
 }

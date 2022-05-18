@@ -103,7 +103,7 @@ public class EnemyHealth : MonoBehaviour
         Destroy(gameObject);
         DropItem();
         this.onDie();
-        GetExpText(10.0f);
+        GetExpText(10);
     }
 
     void DropItem()
@@ -117,43 +117,24 @@ public class EnemyHealth : MonoBehaviour
         };
     }
 
-    public void GetExpText(float PlayerGetExp)
+    public void GetExpText(int PlayerGetExp)
     {
         if (GameManager.instance.Exp <= GameManager.instance.MaxExp)
         {
             GameManager.instance.Exp += PlayerGetExp;
             if (GameManager.instance.Exp >= GameManager.instance.MaxExp)
             {
-                GameManager.instance.Exp = 0f;
+                GameManager.instance.Exp = 0;
                 GameManager.instance.Lv += 1;
-              //  SaveLvXml();
             }
-            //   ExpText.text = Exp + " / " + MaxExp;
 
             Debug.Log("Now Lv : " + GameManager.instance.Lv);
             Debug.Log("Now Exp : " + GameManager.instance.Exp);
 
-            SaveLvXml();
+            PlayerPrefs.SetInt("Exp", GameManager.instance.Exp); // exp 데이터 저장
+            PlayerPrefs.SetInt("Level", GameManager.instance.Lv); // 레벨 데이터 저장
+
         } 
     }
 
-
-    public void SaveLvXml()
-    {
-        TextAsset textAsset = (TextAsset)Resources.Load("Character");
-        XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(textAsset.text);
-
-        XmlNodeList nodes = xmlDoc.SelectNodes("CharacterInfo/Character");
-        XmlNode character = nodes[0];
-
-        // character.SelectSingleNode("Exp").InnerText = "50";
-        character.SelectSingleNode("Level").InnerText = Convert.ToString(GameManager.instance.Lv); // 저장할 수치
-        character.SelectSingleNode("Exp").InnerText = Convert.ToString(GameManager.instance.Exp); // 저장할 수치
-
-        xmlDoc.Save("./Assets/Resources/Character.xml");
-
-        Debug.Log("SaveLvXml : Lv : " + GameManager.instance.Lv);
-        Debug.Log("SaveExpXml : EXP : " + GameManager.instance.Exp);
-    }
 }

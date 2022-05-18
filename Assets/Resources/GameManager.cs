@@ -6,35 +6,24 @@ using System.Xml;
 
 public class GameManager : MonoBehaviour
 {
-    public float Exp;
+    public int Exp = 0;
     public float MaxExp = 100.0f;
     public int Lv;
+
     public static GameManager instance;
 
     private void Awake()
     {
         GameManager.instance = this;
-        LoadLvXml();
+        dataload();
     }
 
-    void LoadLvXml()
+    void dataload()
     {
-        TextAsset textAsset = (TextAsset)Resources.Load("Character");
-
-        XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(textAsset.text);
-
-        XmlNodeList nodes = xmlDoc.SelectNodes("CharacterInfo/Character");
-
-        // Lv = Convert.ToInt32(nodes.)
-
-        foreach (XmlNode node in nodes)
+        if(PlayerPrefs.HasKey("Level"))
         {
-
-            Lv = Convert.ToInt32(node.SelectSingleNode("Level").InnerText);
-            Exp = float.Parse(node.SelectSingleNode("Exp").InnerText);
+            Exp = PlayerPrefs.GetInt("Exp"); // 경험치 데이터 가져오기
+            Lv = PlayerPrefs.GetInt("Level"); // 레벨 데이터 가져오기
         }
-        Debug.Log("LoadLvXml : Lv : " + Lv);
-        Debug.Log("LoadExpXml : Lv : " + Exp);
     }
 }
