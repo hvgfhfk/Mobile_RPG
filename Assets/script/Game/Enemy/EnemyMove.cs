@@ -10,24 +10,17 @@ public class EnemyMove : MonoBehaviour
 
     Transform player;
     Animator anim;
+    UnityEngine.AI.NavMeshAgent nav;
 
-    public UnityEngine.AI.NavMeshAgent nav;
-    EnemyAttack enemyattack;
-
-    // 죽음 확인
-    public bool isDead;
-    // 사거리
-    public float traceDist = 10.0f;
-
-    // 공격 사거리
-    public float attackDist = 1.5f;
+    public bool isDead; // 죽음 확인
+    public float traceDist = 10.0f; // 사거리
+    public float attackDist = 1.5f; // 공격 사거리
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         anim = GetComponent<Animator>();
-        enemyattack = GetComponent<EnemyAttack>();
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 

@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Xml;
 using UnityEngine.UI;
 
-public class xmlLoad : MonoBehaviour
+public class DataManager : MonoBehaviour
 {
     public Slider expslider;
 

@@ -13,11 +13,8 @@ public class Effect : MonoBehaviour
         Destroy(NormalHit_add, 2.0f);
     }
 
-
     public void dashing_Effect()
     {
-        // 대쉬 공격 이펙트 dashing_checkstate()
-
         GameObject dashing_add = Instantiate(dashingHit, transform.position, Quaternion.identity);
         Destroy(dashing_add, 2.0f);
     }

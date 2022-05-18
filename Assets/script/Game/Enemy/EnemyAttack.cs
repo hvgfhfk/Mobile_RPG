@@ -11,10 +11,7 @@ public class EnemyAttack : MonoBehaviour
     PlayerHealth playerHealth;
     EnemyHealth enemyHealth;
 
-    Animator m_anim;
-
     bool playerInRange;
-    bool anim_attack;
     float timer;
 
     private void Awake()
@@ -22,7 +19,6 @@ public class EnemyAttack : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
-        m_anim = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,10 +44,8 @@ public class EnemyAttack : MonoBehaviour
     public void Damage()
     {
         timer += Time.deltaTime;
-        //timeBetweenAttacks
         if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
         {
-            // attack()
             Attack();
         }
     }

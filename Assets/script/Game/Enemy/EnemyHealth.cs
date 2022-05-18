@@ -1,49 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Xml;
-using System;
-using UnityEngine.UI;
-
 public class EnemyHealth : MonoBehaviour
 {
-    // enemyhealth
+    // 변수
     public int startingHealth = 100;
+    public float sinkSpeed = 1f;
     public int currentHealth;
-
-    private Animator m_anim;
-
-    EnemyAttack enemyAttack;
-    PlayerHealth playerHealth;
-
-    // public float flashSpeed = 5f;
-    // public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+    public bool isDead;
+    bool isSinking;
 
     // 데미지 텍스트 표시를 위한 오브젝트 추가
     public GameObject hudDamageText;
     public Transform hudPos;
-
     public GameObject itemPrefab;
 
+    // 컴포넌트
+    Animator m_anim;
+    PlayerHealth playerHealth;
+
     public System.Action onDie;
-
-    public float sinkSpeed = 1f;
-
-    public bool isDead;
-    bool isSinking;
-
-
 
     private void Awake()
     {
         currentHealth = startingHealth;
-        m_anim = GetComponent<Animator>();
+       m_anim = GetComponent<Animator>();
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
-      //  LoadLvXml();
-    }
-
-    private void Start()
-    {
     }
 
     public void TakeDamage(int amount)
@@ -103,7 +85,7 @@ public class EnemyHealth : MonoBehaviour
         Destroy(gameObject);
         DropItem();
         this.onDie();
-        GetExpText(10);
+        GameManager.instance.GetExp(10);
     }
 
     void DropItem()
@@ -116,25 +98,4 @@ public class EnemyHealth : MonoBehaviour
             Diamond.SetActive(true);
         };
     }
-
-    public void GetExpText(int PlayerGetExp)
-    {
-        if (GameManager.instance.Exp <= GameManager.instance.MaxExp)
-        {
-            GameManager.instance.Exp += PlayerGetExp;
-            if (GameManager.instance.Exp >= GameManager.instance.MaxExp)
-            {
-                GameManager.instance.Exp = 0;
-                GameManager.instance.Lv += 1;
-            }
-
-            Debug.Log("Now Lv : " + GameManager.instance.Lv);
-            Debug.Log("Now Exp : " + GameManager.instance.Exp);
-
-            PlayerPrefs.SetInt("Exp", GameManager.instance.Exp); // exp 데이터 저장
-            PlayerPrefs.SetInt("Level", GameManager.instance.Lv); // 레벨 데이터 저장
-
-        } 
-    }
-
 }

@@ -12,8 +12,6 @@ public class PlayerAttack : MonoBehaviour
     public NormalTarget normalTarget;
     public SkillTarget skillTarget;
 
-    //public EnemyHealth enemy;
-
     public AudioSource audioSource;
 
     private void Start()

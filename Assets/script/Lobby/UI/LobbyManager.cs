@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LobbyButton : MonoBehaviour
+public class LobbyManager : MonoBehaviour
 {
-
-    public void StartButtonOn()
+    public void MoveGameScene()
     {
         SceneManager.LoadSceneAsync("SampleScene");
-       // SceneManager.LoadScene("SampleScene");
     }
 }

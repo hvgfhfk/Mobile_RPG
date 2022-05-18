@@ -2372,6 +2372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Exp: 0
   MaxExp: 100
+  Diamond: 0
   Lv: 0
 --- !u!1 &1939175352
 GameObject:
