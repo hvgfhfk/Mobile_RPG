@@ -18,13 +18,11 @@ public class xmlLoad : MonoBehaviour
         Exp = GameObject.Find("TextExp").GetComponent<Text>();
         Level = GameObject.Find("TextLevel").GetComponent<Text>();
         //Diamond = GetComponent<Text>();
-       // Exp = GetComponent<Text>();
-    }
+        // Exp = GetComponent<Text>();
 
-    private void Update()
-    { // 주석 풀ㄹ기!
         LoadXml();
     }
+
 
     void LoadXml()
     {
