@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Manager_SE : MonoBehaviour
 {
-    public AudioSource audio;
+    public new AudioSource audio;
 
     [Header("Clip")]
     public AudioClip step;

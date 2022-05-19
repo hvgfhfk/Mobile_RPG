@@ -24,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
     // 플레이어 움직임 관리 스크립트
     PlayerMovement playerMovement;
+    PlayerAttack playerAttack;
     // 데미지 입었는지 확인 (player)
     public bool damaged;
 
@@ -33,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         // playermovement 스크립트
         playerMovement = GetComponent<PlayerMovement>();
+        playerAttack = GetComponent<PlayerAttack>();
         // 현재 체력을 최대 체력으로 설정
         currentHealth = startingHealth;
     }
@@ -53,10 +55,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        // 공격을 받으면 true
-        damaged = true;
-        playerMovement.attacking = false;
-        playerMovement.dashing = false;
         // 공격 받으면 손실
         currentHealth -= amount;
         // 체력 게이지에 변경된 값을 표시
@@ -78,6 +76,9 @@ public class PlayerHealth : MonoBehaviour
         anim.SetTrigger("Die");
         // 움직임 스크립트 비활성화
         playerMovement.enabled = false;
+        playerAttack.enabled = false;
+        GameObject.Find("SkillDash").SetActive(false);
+        GameObject.Find("ButtonAttack").SetActive(false);
     }
 
     public void recovery_strength()
