@@ -12,7 +12,7 @@ public class WeaponManager : MonoBehaviour
     // 다이아
     public int Diamond;
 
-    public int Upgread = 0; // 캐릭터 레벨 업시 증가하는 데미지 량
+    public int Upgread; // 캐릭터 레벨 업시 증가하는 데미지 량
 
     // 무기 데미지
     public int SwordDamage = 5;
@@ -59,11 +59,13 @@ public class WeaponManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("SwordDamage", SwordDamage); // exp 데이터 저장
         PlayerPrefs.SetInt("Diamond", Diamond); // 다이아 저장
+        PlayerPrefs.SetInt("Upgread", Upgread); // 레벨업시 공격력 저장
     }
 
     public void DataLoad()
     {
         SwordDamage += PlayerPrefs.GetInt("SwordDamage");
         Diamond = PlayerPrefs.GetInt("Diamond");
+        Upgread = PlayerPrefs.GetInt("Upgread");
     }
 }
