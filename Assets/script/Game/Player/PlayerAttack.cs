@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    // 플레이어가 몬스터에게 주는 데미지 수
-    public int NormalDamage = 10;
-    public int DashDamage = 30;
-
     // 캐릭터의 공격 반경
     public NormalTarget normalTarget;
     public SkillTarget skillTarget;
@@ -36,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
             EnemyHealth enemy = one.GetComponent<EnemyHealth>();
             if(enemy != null)
             {
-                StartCoroutine(enemy.StartDamage(NormalDamage, transform.position, 0.5f, 0.5f));
+                StartCoroutine(enemy.StartDamage(WeaponManager.instance.NormalCalc, transform.position, 0.5f, 0.5f));
             }
         }
     }
@@ -57,7 +53,7 @@ public class PlayerAttack : MonoBehaviour
 
             if(enemy != null)
             {
-                StartCoroutine(enemy.StartDamage(DashDamage, transform.position, 0.1f, 0.1f));
+                StartCoroutine(enemy.StartDamage(WeaponManager.instance.DashCalc, transform.position, 0.1f, 0.1f));
             }
         }
     }

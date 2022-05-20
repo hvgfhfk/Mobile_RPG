@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public int Exp = 0;
     public float MaxExp = 100.0f;
     public int Diamond = 0;
-    public int Lv;
+    public int Lv = 1;
 
     public static GameManager instance;
 
@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
             if(Exp >= MaxExp)
             {
                 Exp = 0; // 경험치 초기화
+                WeaponManager.instance.Upgread += 1;
+                WeaponManager.instance.DamageCalc();
                 ++Lv; // 레벨업
             }
             DataSave();
