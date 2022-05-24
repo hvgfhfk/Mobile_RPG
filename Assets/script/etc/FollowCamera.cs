@@ -5,7 +5,7 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour
 {
     public float distanceAway = 7f;
-    public float distanceUp = 4f;
+    public float distanceUp = 7.5f;
 
 
     // 따라다닐 객체

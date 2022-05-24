@@ -4,56 +4,29 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public float timeBetweenAttacks = 3.0f;
     public int attackDamage = 10;
 
     GameObject player;
     PlayerHealth playerHealth;
-    EnemyHealth enemyHealth;
-
-    bool playerInRange;
-    float timer;
+    EnemyMove enemymove;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
-        enemyHealth = GetComponent<EnemyHealth>();
+        enemymove = GetComponent<EnemyMove>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == player)
+        if(other.gameObject == player && enemymove.curState == EnemyMove.CurrentState.attack)
         {
-            playerInRange = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject == player)
-        {
-            playerInRange = false;
-        }
-    }
-
-    private void Update()
-    {
-        Damage();
-    }
-    public void Damage()
-    {
-        timer += Time.deltaTime;
-        if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
-        {
+            //Debug.Log("몬스터 공격 감지");
             Attack();
         }
     }
-
     void Attack()
     {
-        timer = 0f;
-
         if(playerHealth.currentHealth > 0)
         {
             playerHealth.TakeDamage(attackDamage);

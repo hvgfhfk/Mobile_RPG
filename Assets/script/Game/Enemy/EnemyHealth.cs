@@ -19,7 +19,6 @@ public class EnemyHealth : MonoBehaviour
     Animator m_anim;
     PlayerHealth playerHealth;
 
-    public System.Action onDie;
 
     private void Awake()
     {
@@ -82,7 +81,7 @@ public class EnemyHealth : MonoBehaviour
         playerHealth.recovery_strength();
         Destroy(gameObject);
         DropItem();
-        this.onDie();
+      //  this.onDie();
         GameManager.instance.GetExp(10);
     }
 
@@ -90,10 +89,7 @@ public class EnemyHealth : MonoBehaviour
     {
         var Diamond = Instantiate<GameObject>(this.itemPrefab);
         Diamond.transform.position = this.gameObject.transform.position;
-        Diamond.SetActive(false);
-        this.onDie = () =>
-        {
-            Diamond.SetActive(true);
-        };
+     //   Diamond.SetActive(false);
+        Diamond.SetActive(true);
     }
 }
