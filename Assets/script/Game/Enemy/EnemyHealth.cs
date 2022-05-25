@@ -84,7 +84,7 @@ public class EnemyHealth : MonoBehaviour
         DropItem();
       //  this.onDie();
         GameManager.instance.GetExp(10);
-        GameManager.instance.MaxMonsterDead();
+        EnemySpawn.instance.StopSpawn();
     }
 
     void DropItem()

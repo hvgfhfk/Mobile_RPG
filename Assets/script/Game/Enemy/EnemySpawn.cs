@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -32,7 +33,13 @@ public class EnemySpawn : MonoBehaviour
         if(GameManager.instance.DeadCount >= GameManager.instance.MonsterMaxDead)
         {
             CancelInvoke("Spawn");
-            GameManager.instance.MaxMonsterDead();
+            StartCoroutine(nextSence());
         }
+    }
+
+    IEnumerator nextSence()
+    {
+        yield return new WaitForSeconds(10.0f);
+        SceneManager.LoadSceneAsync("Lobby");
     }
 }
