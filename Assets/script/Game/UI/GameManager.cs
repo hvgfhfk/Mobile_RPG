@@ -10,11 +10,15 @@ public class GameManager : MonoBehaviour
     public int Diamond = 0;
     public int Lv = 1;
 
+    public int DeadCount = 0;
+    public int MonsterMaxDead;
+
     public static GameManager instance;
 
     private void Awake()
     {
         GameManager.instance = this;
+        MonsterMaxDead = Random.Range(0, 10);
         DataLoad();
     }
 
@@ -60,5 +64,10 @@ public class GameManager : MonoBehaviour
     public void MoveLobby()
     {
         SceneManager.LoadSceneAsync("Lobby");
+    }
+
+    public void MaxMonsterDead()
+    {
+        Invoke("MoveLobby", 10);
     }
 }

@@ -19,12 +19,12 @@ public class EnemyHealth : MonoBehaviour
     Animator m_anim;
     PlayerHealth playerHealth;
 
-
     private void Awake()
     {
         currentHealth = startingHealth;
-       m_anim = GetComponent<Animator>();
+        m_anim = GetComponent<Animator>();
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+        
     }
 
     public void TakeDamage(int amount)
@@ -79,10 +79,12 @@ public class EnemyHealth : MonoBehaviour
 
         // 몬스터가 죽었을 경우 플레이어의 체력 회복
         playerHealth.recovery_strength();
+        GameManager.instance.DeadCount += 1;
         Destroy(gameObject);
         DropItem();
       //  this.onDie();
         GameManager.instance.GetExp(10);
+        GameManager.instance.MaxMonsterDead();
     }
 
     void DropItem()

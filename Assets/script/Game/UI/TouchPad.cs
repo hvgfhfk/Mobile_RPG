@@ -53,7 +53,7 @@ public class TouchPad : MonoBehaviour
     {
         HandleTouchInput();
 
-        // 모바일이 아닌 pcㄴ 유니티 에디터 상에서 터치 입력이 아닌 마우스로 입력받기
+        // 모바일이 아닌 pc 유니티 에디터 상에서 터치 입력이 아닌 마우스로 입력받기
 #if UNITY_EDITOR || UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN || UNITY_WEBPLAYER
         HandleInput(Input.mousePosition);
 #endif
