@@ -17,7 +17,8 @@ public class DataManager : MonoBehaviour
         Exp = GameObject.Find("TextExp").GetComponent<Text>();
         Level = GameObject.Find("TextLevel").GetComponent<Text>();
 
-        LoadData();
+        //  LoadData();
+        InvokeRepeating("LoadData", 0.1f, 0.1f);
     }
 
 
@@ -27,5 +28,13 @@ public class DataManager : MonoBehaviour
         Exp.text = PlayerPrefs.GetInt("Exp").ToString() + " / 100";
         Level.text = PlayerPrefs.GetInt("Level").ToString() + " Lv";
         expslider.value = PlayerPrefs.GetInt("Exp");
+    }
+    IEnumerator DataLoadTime()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        LoadData();
+
+        yield return new WaitForSeconds(0.1f);
     }
 }
