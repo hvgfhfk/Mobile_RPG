@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
         GameManager.instance = this;
         MonsterMaxDead = Random.Range(0, 10);
         DataLoad();
-        StartCoroutine(DataLoadTime());
     }
 
     public void GetDiamond(int newDia)
@@ -72,10 +71,4 @@ public class GameManager : MonoBehaviour
         Invoke("MoveLobby", 10);
     }
 
-    IEnumerator DataLoadTime()
-    {
-        yield return new WaitForSeconds(0.1f);
-
-        DataLoad();
-    }
 }
