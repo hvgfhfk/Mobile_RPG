@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyMove : MonoBehaviour
 {
+    public static EnemyMove instance;
+
     public enum CurrentState { idle, trace, attack, dead };
     public CurrentState curState = CurrentState.idle;
 
@@ -18,6 +20,8 @@ public class EnemyMove : MonoBehaviour
 
     private void Awake()
     {
+        EnemyMove.instance = this;
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         anim = GetComponent<Animator>();
@@ -50,6 +54,10 @@ public class EnemyMove : MonoBehaviour
             {
                 curState = CurrentState.dead;
             }
+           /* else if (PlayerHealth.instance.isdead == true)
+            {
+                curState = CurrentState.idle;
+            }*/
             else
             {
                 curState = CurrentState.idle;

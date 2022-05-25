@@ -71,9 +71,11 @@ public class PlayerHealth : MonoBehaviour
     void Death()
     {
         isdead = true;
-
         // 애니메이션 Die 트리거 발동
         anim.SetTrigger("Die");
+        EnemyMove.instance.traceDist = 0f; // 적 추적 사거리 0으로 초기화
+        EnemyMove.instance.attackDist = 0f; // 적 공격 사거리 0으로 초기화
+        EnemySpawn.instance.CancelInvoke("Spawn");
         // 움직임 스크립트 비활성화
         playerMovement.enabled = false;
         playerAttack.enabled = false;
