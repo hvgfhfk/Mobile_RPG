@@ -10,12 +10,14 @@ public class DataManager : MonoBehaviour
     public Text Diamond;
     public Text Exp;
     public Text Level;
+    public Text UpgradeCount;
 
     private void Awake()
     {
         Diamond = GameObject.Find("DiamondCount").GetComponent<Text>();
         Exp = GameObject.Find("TextExp").GetComponent<Text>();
         Level = GameObject.Find("TextLevel").GetComponent<Text>();
+        UpgradeCount = GameObject.Find("SwordUpgradeCount").GetComponent<Text>();
 
         //  LoadData();
         InvokeRepeating("LoadData", 0.1f, 0.1f);
@@ -28,6 +30,7 @@ public class DataManager : MonoBehaviour
         Exp.text = PlayerPrefs.GetInt("Exp").ToString() + " / 100";
         Level.text = PlayerPrefs.GetInt("Level").ToString() + " Lv";
         expslider.value = PlayerPrefs.GetInt("Exp");
+        UpgradeCount.text = "°­È­ È½¼ö : " + PlayerPrefs.GetInt("UpgradeCount").ToString();
     }
 
 }

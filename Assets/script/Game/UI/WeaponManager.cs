@@ -12,6 +12,8 @@ public class WeaponManager : MonoBehaviour
 
     // 다이아
     public int Diamond;
+    // 업그레이드 카운트
+    public int UpgradeCount;
 
     public int Upgrade; // 캐릭터 레벨 업시 증가하는 데미지 량
 
@@ -61,6 +63,7 @@ public class WeaponManager : MonoBehaviour
         {
             Diamond -= 100; // 다이아 차감
             SwordDamage += 5; // 무기 공격력 올리기
+            UpgradeCount++;
             DataAutoSave();
         }
       //  Shortage.SetActive(false);
@@ -78,5 +81,6 @@ public class WeaponManager : MonoBehaviour
         PlayerPrefs.SetInt("Diamond", Diamond);
         PlayerPrefs.SetInt("SwordDamage", SwordDamage);
         PlayerPrefs.SetInt("Upgrade", Upgrade);
+        PlayerPrefs.SetInt("UpgradeCount", UpgradeCount);
     }
 }
