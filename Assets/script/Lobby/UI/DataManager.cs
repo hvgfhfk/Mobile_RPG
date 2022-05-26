@@ -29,12 +29,5 @@ public class DataManager : MonoBehaviour
         Level.text = PlayerPrefs.GetInt("Level").ToString() + " Lv";
         expslider.value = PlayerPrefs.GetInt("Exp");
     }
-    IEnumerator DataLoadTime()
-    {
-        yield return new WaitForSeconds(0.1f);
 
-        LoadData();
-
-        yield return new WaitForSeconds(0.1f);
-    }
 }

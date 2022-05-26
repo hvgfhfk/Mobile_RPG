@@ -683,8 +683,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e56d3efa4cfdcd4d97b2fa33af3c4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Shortage: {fileID: 0}
   Diamond: 0
-  Upgread: 0
+  Upgrade: 0
   SwordDamage: 5
   NormalDamage: 5
   DashDamage: 25
@@ -1437,12 +1438,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d2643664681432183d33b5f24ff61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 3906511633026495795, guid: 2ee355537ae7844f8b044be1dc185ef5, type: 3}
+  enemy:
+  - {fileID: 3906511633026495795, guid: 2ee355537ae7844f8b044be1dc185ef5, type: 3}
+  - {fileID: 2918249618548898596, guid: b2cd422330b8f4142b1e2aa66c7cd6a1, type: 3}
   intervalTime: 10
   spawnPools:
   - {fileID: 549055455}
   - {fileID: 209461875}
   - {fileID: 711776631}
+  i: 0
 --- !u!4 &1020201171
 Transform:
   m_ObjectHideFlags: 0
@@ -2147,6 +2151,8 @@ MonoBehaviour:
   MaxExp: 100
   Diamond: 0
   Lv: 0
+  DeadCount: 0
+  MonsterMaxDead: 0
 --- !u!1 &1939175352
 GameObject:
   m_ObjectHideFlags: 0

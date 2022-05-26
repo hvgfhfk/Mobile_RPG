@@ -19,50 +19,47 @@ public class GameManager : MonoBehaviour
     {
         GameManager.instance = this;
         MonsterMaxDead = Random.Range(5, 15);
-        DataLoad();
+        DataAutoLoad();
     }
 
     public void GetDiamond(int newDia)
     {
         Diamond += newDia;
-        DataSave();
+        DataAutoSave();
     }
 
     public void GetExp(int GetExp)
     {
-        if(Exp <= MaxExp)
+        if (Exp <= MaxExp)
         {
             Exp += GetExp;
-            if(Exp >= MaxExp)
+            if (Exp >= MaxExp)
             {
                 Exp = 0; // 경험치 초기화
-                WeaponManager.instance.Upgread += 1;
+                WeaponManager.instance.UpgradeData(1);
                 WeaponManager.instance.DamageCalc();
                 ++Lv; // 레벨업
             }
-            DataSave();
-        }
-    }
-
-    void DataSave()
-    {
-        PlayerPrefs.SetInt("Exp", Exp); // exp 데이터 저장
-        PlayerPrefs.SetInt("Level", Lv); // 레벨 데이터 저장
-        PlayerPrefs.SetInt("Diamond", Diamond); // 다이아 저장
-    }
-
-    void DataLoad()
-    { // 게임 데이터 로드
-        if(PlayerPrefs.HasKey("Level"))
-        {
-            Exp = PlayerPrefs.GetInt("Exp"); // 경험치 데이터 가져오기
-            Lv = PlayerPrefs.GetInt("Level"); // 레벨 데이터 가져오기
-            Diamond = PlayerPrefs.GetInt("Diamond"); // 다이아 데이터 불러오기
+            DataAutoSave();
         }
     }
 
     public void MoveLobby()
     {
         SceneManager.LoadSceneAsync("Lobby");
+    }
+
+    public void DataAutoLoad() // 데이터 로드
+    {
+        Diamond = WeaponManager.instance.Diamond;
+
+        Lv = PlayerPrefs.GetInt("Level"); // 레벨 데이터 가져오기
+        Exp = PlayerPrefs.GetInt("Exp");
+    }
+    public void DataAutoSave() // 데이터 세이브
+    {
+        PlayerPrefs.SetInt("Exp", Exp);
+        PlayerPrefs.SetInt("Level", Lv);
+        PlayerPrefs.SetInt("Diamond", Diamond);
     }
 }

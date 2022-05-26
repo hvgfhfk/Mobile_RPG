@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject enemy;
+    public GameObject[] enemy;
     //public List<GameObject> enemy = new List<GameObject>();
     public static EnemySpawn instance;
 
@@ -25,7 +25,8 @@ public class EnemySpawn : MonoBehaviour
     void Spawn()
     {
         int spawnPoolInbox = Random.Range(0, spawnPools.Length);
-        Instantiate(enemy, spawnPools[spawnPoolInbox].position, spawnPools[spawnPoolInbox].rotation);
+        int MonsterSpawnNumber = Random.Range(0, enemy.Length); // 랜덤함수에 사용할 변수
+        Instantiate(enemy[MonsterSpawnNumber], spawnPools[spawnPoolInbox].position, spawnPools[spawnPoolInbox].rotation);
     }
 
     public void StopSpawn()
@@ -38,7 +39,8 @@ public class EnemySpawn : MonoBehaviour
     }
 
     IEnumerator nextSence()
-    {
+    { // 해당 몬스터가 스테이지의 몬스터가 다 죽었을 경우 다음씬으로 넘어가기
+
         yield return new WaitForSeconds(10.0f);
         SceneManager.LoadSceneAsync("Lobby");
     }

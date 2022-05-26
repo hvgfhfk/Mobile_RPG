@@ -8,11 +8,12 @@ public class WeaponManager : MonoBehaviour
     public static WeaponManager instance;
 
     Button upgreadbutton;
+    public GameObject Shortage;
 
     // 다이아
     public int Diamond;
 
-    public int Upgread; // 캐릭터 레벨 업시 증가하는 데미지 량
+    public int Upgrade; // 캐릭터 레벨 업시 증가하는 데미지 량
 
     // 무기 데미지
     public int SwordDamage = 5;
@@ -30,42 +31,52 @@ public class WeaponManager : MonoBehaviour
         WeaponManager.instance = this;
         upgreadbutton = GetComponent<Button>();
         DamageCalc();
+        DataAutoLoad();
     }
 
     public void DamageCalc()
     {
-        DataLoad();
+        DataAutoLoad();
         // 무기 공격력 + 스킬 공격력 + 업그레이드
-        NormalCalc = SwordDamage + NormalDamage + Upgread; // 일반 공격 계산
-        DashCalc = SwordDamage + DashDamage + Upgread; // 대쉬 공격 계산
+        // 50 = 45 + 5 + 0
+        NormalCalc = SwordDamage + NormalDamage + Upgrade; // 일반 공격 계산
+        DashCalc = SwordDamage + DashDamage + Upgrade; // 대쉬 공격 계산
 
+    }
+
+    public void UpgradeData(int UpgradeLv)
+    { // 레벨업시 증가할 공격력 량
+        Upgrade += UpgradeLv;
+        DataAutoSave();
     }
 
     public void SwordUpgread()
     {
         if (Diamond < 100)
         {
-            Debug.Log("다이아가 부족합니다.");
+            Shortage.SetActive(true);
+            UIFade.instance.StartCoroutine("FadeIn");
         }
         else if(Diamond >= 100)
         {
             Diamond -= 100; // 다이아 차감
             SwordDamage += 5; // 무기 공격력 올리기
-            DataSave();
+            DataAutoSave();
         }
+      //  Shortage.SetActive(false);
     }
 
-    public void DataSave()
+    public void DataAutoLoad()
     {
-        PlayerPrefs.SetInt("SwordDamage", SwordDamage); // exp 데이터 저장
-        PlayerPrefs.SetInt("Diamond", Diamond); // 다이아 저장
-        PlayerPrefs.SetInt("Upgread", Upgread); // 레벨업시 공격력 저장
-    }
-
-    public void DataLoad()
-    {
-        SwordDamage += PlayerPrefs.GetInt("SwordDamage");
         Diamond = PlayerPrefs.GetInt("Diamond");
-        Upgread = PlayerPrefs.GetInt("Upgread");
+        SwordDamage = PlayerPrefs.GetInt("SwordDamage");
+        Upgrade = PlayerPrefs.GetInt("Upgrade");
+    }
+
+    public void DataAutoSave()
+    {
+        PlayerPrefs.SetInt("Diamond", Diamond);
+        PlayerPrefs.SetInt("SwordDamage", SwordDamage);
+        PlayerPrefs.SetInt("Upgrade", Upgrade);
     }
 }
