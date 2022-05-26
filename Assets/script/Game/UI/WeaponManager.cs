@@ -74,6 +74,7 @@ public class WeaponManager : MonoBehaviour
         Diamond = PlayerPrefs.GetInt("Diamond");
         SwordDamage = PlayerPrefs.GetInt("SwordDamage");
         Upgrade = PlayerPrefs.GetInt("Upgrade");
+        UpgradeCount = PlayerPrefs.GetInt("UpgradeCount");
     }
 
     public void DataAutoSave()

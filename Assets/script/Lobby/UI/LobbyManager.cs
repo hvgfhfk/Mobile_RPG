@@ -19,6 +19,5 @@ public class LobbyManager : MonoBehaviour
     public void UpgradeOpen()
     {
         upgradewindow.SetActive(true);
-       // GameObject.Find("UpgradeShop").activeSelf(true);
     }
 }
