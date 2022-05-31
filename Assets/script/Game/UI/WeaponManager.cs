@@ -10,21 +10,23 @@ public class WeaponManager : MonoBehaviour
     Button upgreadbutton;
     public GameObject Shortage;
 
-    // ´ÙÀÌ¾Æ
+    // ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ Ä«ï¿½ï¿½Æ®
+    [SerializeField]
+    private int UpgradeCount;
+    [SerializeField]
+    private int Upgrade; // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [SerializeField]
+    private int SwordDamage = 5;
+    // ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [SerializeField]
+    private int NormalDamage = 5;
+    [SerializeField]
+    private int DashDamage = 25;
+
+    // ï¿½ï¿½ï¿½Ì¾ï¿½
     public int Diamond;
-    // ¾÷±×·¹ÀÌµå Ä«¿îÆ®
-    public int UpgradeCount;
-
-    public int Upgrade; // Ä³¸¯ÅÍ ·¹º§ ¾÷½Ã Áõ°¡ÇÏ´Â µ¥¹ÌÁö ·®
-
-    // ¹«±â µ¥¹ÌÁö
-    public int SwordDamage = 5;
-
-    // ½ºÅ³ µ¥¹ÌÁö
-    public int NormalDamage = 5;
-    public int DashDamage = 25;
-
-    // Ä³¸¯ÅÍ °ø°Ý µ¥¹ÌÁö
+    // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public int NormalCalc = 0;
     public int DashCalc = 0;
 
@@ -39,15 +41,15 @@ public class WeaponManager : MonoBehaviour
     public void DamageCalc()
     {
         DataAutoLoad();
-        // ¹«±â °ø°Ý·Â + ½ºÅ³ °ø°Ý·Â + ¾÷±×·¹ÀÌµå
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·ï¿½ + ï¿½ï¿½Å³ ï¿½ï¿½ï¿½Ý·ï¿½ + ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½
         // 50 = 45 + 5 + 0
-        NormalCalc = SwordDamage + NormalDamage + Upgrade; // ÀÏ¹Ý °ø°Ý °è»ê
-        DashCalc = SwordDamage + DashDamage + Upgrade; // ´ë½¬ °ø°Ý °è»ê
+        NormalCalc = SwordDamage + NormalDamage + Upgrade; // ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+        DashCalc = SwordDamage + DashDamage + Upgrade; // ï¿½ë½¬ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
     }
 
     public void UpgradeData(int UpgradeLv)
-    { // ·¹º§¾÷½Ã Áõ°¡ÇÒ °ø°Ý·Â ·®
+    { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·ï¿½ ï¿½ï¿½
         Upgrade += UpgradeLv;
         DataAutoSave();
     }
@@ -61,8 +63,8 @@ public class WeaponManager : MonoBehaviour
         }
         else if(Diamond >= 100)
         {
-            Diamond -= 100; // ´ÙÀÌ¾Æ Â÷°¨
-            SwordDamage += 5; // ¹«±â °ø°Ý·Â ¿Ã¸®±â
+            Diamond -= 100; // ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
+            SwordDamage += 5; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½
             UpgradeCount++;
             DataAutoSave();
         }

@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int startingHealth = 100; // 플레이어 시작 체력
+    [SerializeField]
+    private int startingHealth = 100; // 플레이어 시작 체력
+
     public int currentHealth = 0; // 현재 체력
-    public bool isdead = false; // 죽음 확인
+
+    [SerializeField]
+    private bool isdead = false; // 죽음 확인
 
     // 체력 게이지 UI와 연결된 변수
     public Slider healthSlider;
@@ -26,7 +30,8 @@ public class PlayerHealth : MonoBehaviour
     PlayerMovement playerMovement;
     PlayerAttack playerAttack;
     // 데미지 입었는지 확인 (player)
-    public bool damaged;
+    [SerializeField]
+    private bool damaged;
 
     private void Awake()
     {

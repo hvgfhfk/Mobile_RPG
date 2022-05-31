@@ -14,7 +14,9 @@ public class EnemyMove : MonoBehaviour
     Animator anim;
     UnityEngine.AI.NavMeshAgent nav;
 
-    public bool isDead; // 죽음 확인
+    [SerializeField]
+    private bool isDead; // 죽음 확인
+
     public float traceDist = 10.0f; // 사거리
     public float attackDist = 1.5f; // 공격 사거리
 

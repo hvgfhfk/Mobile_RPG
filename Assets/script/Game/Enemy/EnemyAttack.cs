@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public int attackDamage = 10;
+    [SerializeField]
+    private int attackDamage = 10;
 
     GameObject player;
     PlayerHealth playerHealth;
@@ -21,7 +22,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if(other.gameObject == player && enemymove.curState == EnemyMove.CurrentState.attack)
         {
-            //Debug.Log("¸ó½ºÅÍ °ø°Ý °¨Áö");
+            //Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
             Attack();
         }
     }

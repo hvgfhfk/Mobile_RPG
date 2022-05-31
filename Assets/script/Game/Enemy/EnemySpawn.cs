@@ -9,7 +9,8 @@ public class EnemySpawn : MonoBehaviour
     //public List<GameObject> enemy = new List<GameObject>();
     public static EnemySpawn instance;
 
-    public float intervalTime = 10f;
+    [SerializeField]
+    private float intervalTime = 10f;
     public Transform[] spawnPools;
 
     private void Awake()
@@ -25,7 +26,7 @@ public class EnemySpawn : MonoBehaviour
     void Spawn()
     {
         int spawnPoolInbox = Random.Range(0, spawnPools.Length);
-        int MonsterSpawnNumber = Random.Range(0, enemy.Length); // ·£´ýÇÔ¼ö¿¡ »ç¿ëÇÒ º¯¼ö
+        int MonsterSpawnNumber = Random.Range(0, enemy.Length); // ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Instantiate(enemy[MonsterSpawnNumber], spawnPools[spawnPoolInbox].position, spawnPools[spawnPoolInbox].rotation);
     }
 
@@ -39,7 +40,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     IEnumerator nextSence()
-    { // ÇØ´ç ¸ó½ºÅÍ°¡ ½ºÅ×ÀÌÁöÀÇ ¸ó½ºÅÍ°¡ ´Ù Á×¾úÀ» °æ¿ì ´ÙÀ½¾ÀÀ¸·Î ³Ñ¾î°¡±â
+    { // ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ ï¿½×¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½
 
         yield return new WaitForSeconds(10.0f);
         SceneManager.LoadSceneAsync("Lobby");

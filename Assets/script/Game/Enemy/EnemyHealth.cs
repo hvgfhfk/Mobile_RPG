@@ -4,11 +4,17 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     // 변수
-    public int startingHealth = 100;
-    public float sinkSpeed = 1f;
+    [SerializeField]
+    private int startingHealth = 100;
+    [SerializeField]
+    private float sinkSpeed = 1f;
+
     public int currentHealth;
-    public bool isDead;
-    bool isSinking;
+
+    [SerializeField]
+    private bool isDead;
+    [SerializeField]
+    private bool isSinking;
 
     // 데미지 텍스트 표시를 위한 오브젝트 추가
     public GameObject hudDamageText;

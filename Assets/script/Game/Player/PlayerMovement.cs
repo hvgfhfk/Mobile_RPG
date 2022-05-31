@@ -17,9 +17,11 @@ public class PlayerMovement : MonoBehaviour
     // v : Vertical 세로 방향
 
     float h, v;
-
-    public bool attacking = false;
-    public bool dashing = false;
+    
+    [SerializeField]
+    private bool attacking = false;
+    [SerializeField]
+    private bool dashing = false;
 
     private void Start()
     {

@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class DataManager : MonoBehaviour
 {
-    public Slider expslider;
-
-    public Text Diamond;
-    public Text Exp;
-    public Text Level;
-    public Text UpgradeCount;
+    [SerializeField]
+    private Slider expslider;
+    [SerializeField]
+    private Text Diamond;
+    [SerializeField]
+    private Text Exp;
+    [SerializeField]
+    private Text Level;
+    [SerializeField]
+    private Text UpgradeCount;
 
     private void Awake()
     {
@@ -28,7 +32,7 @@ public class DataManager : MonoBehaviour
         Exp.text = PlayerPrefs.GetInt("Exp").ToString() + " / 100";
         Level.text = PlayerPrefs.GetInt("Level").ToString() + " Lv";
         expslider.value = PlayerPrefs.GetInt("Exp");
-        UpgradeCount.text = "°­È­ È½¼ö : " + PlayerPrefs.GetInt("UpgradeCount").ToString();
+        UpgradeCount.text = "ï¿½ï¿½È­ È½ï¿½ï¿½ : " + PlayerPrefs.GetInt("UpgradeCount").ToString();
 
     }
 

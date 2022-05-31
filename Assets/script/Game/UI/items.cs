@@ -7,7 +7,8 @@ using System;
 
 public class items : MonoBehaviour
 {
-    public static int nowDiamond = 0;
+    [SerializeField]
+    private static int nowDiamond = 0;
 
     private void OnTriggerEnter(Collider other)
     {

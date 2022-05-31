@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int Exp = 0;
-    public float MaxExp = 100.0f;
-    public int Diamond = 0;
-    public int Lv = 1;
+    [SerializeField]
+    private int Exp = 0;
+    [SerializeField]
+    private float MaxExp = 100.0f;
+    [SerializeField]
+    private int Diamond = 0;
+    [SerializeField]
+    private int Lv = 1;
 
     public int DeadCount = 0;
     public int MonsterMaxDead;
@@ -35,10 +39,10 @@ public class GameManager : MonoBehaviour
             Exp += GetExp;
             if (Exp >= MaxExp)
             {
-                Exp = 0; // °æÇèÄ¡ ÃÊ±âÈ­
+                Exp = 0; // ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½Ê±ï¿½È­
                 WeaponManager.instance.UpgradeData(1);
                 WeaponManager.instance.DamageCalc();
-                ++Lv; // ·¹º§¾÷
+                ++Lv; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             }
             DataAutoSave();
         }
@@ -49,14 +53,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync("Lobby");
     }
 
-    public void DataAutoLoad() // µ¥ÀÌÅÍ ·Îµå
+    public void DataAutoLoad() // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½
     {
         Diamond = WeaponManager.instance.Diamond;
 
-        Lv = PlayerPrefs.GetInt("Level"); // ·¹º§ µ¥ÀÌÅÍ °¡Á®¿À±â
+        Lv = PlayerPrefs.GetInt("Level"); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Exp = PlayerPrefs.GetInt("Exp");
     }
-    public void DataAutoSave() // µ¥ÀÌÅÍ ¼¼ÀÌºê
+    public void DataAutoSave() // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½
     {
         PlayerPrefs.SetInt("Exp", Exp);
         PlayerPrefs.SetInt("Level", Lv);
