@@ -7,28 +7,11 @@ public class WeaponManager : MonoBehaviour
 {
     public static WeaponManager instance;
 
+    [SerializeField]
+    private UI uiCurrent;
+
     Button upgreadbutton;
     public GameObject Shortage;
-
-    // ���׷��̵� ī��Ʈ
-    [SerializeField]
-    private int UpgradeCount;
-    [SerializeField]
-    private int Upgrade; // ĳ���� ���� ���� �����ϴ� ������ ��
-    // ���� ������
-    [SerializeField]
-    private int SwordDamage = 5;
-    // ��ų ������
-    [SerializeField]
-    private int NormalDamage = 5;
-    [SerializeField]
-    private int DashDamage = 25;
-
-    // ���̾�
-    public int Diamond;
-    // ĳ���� ���� ������
-    public int NormalCalc = 0;
-    public int DashCalc = 0;
 
     private void Awake()
     {
@@ -41,49 +24,47 @@ public class WeaponManager : MonoBehaviour
     public void DamageCalc()
     {
         DataAutoLoad();
-        // ���� ���ݷ� + ��ų ���ݷ� + ���׷��̵�
-        // 50 = 45 + 5 + 0
-        NormalCalc = SwordDamage + NormalDamage + Upgrade; // �Ϲ� ���� ���
-        DashCalc = SwordDamage + DashDamage + Upgrade; // �뽬 ���� ���
+        // 데미지 계산
+        uiCurrent.NormalCalc = uiCurrent.SwordDamage + uiCurrent.NormalDamage + uiCurrent.Upgrade;
+        uiCurrent.DashCalc = uiCurrent.SwordDamage + uiCurrent.DashDamage + uiCurrent.Upgrade;
 
     }
 
     public void UpgradeData(int UpgradeLv)
-    { // �������� ������ ���ݷ� ��
-        Upgrade += UpgradeLv;
+    { // 레벨업
+        uiCurrent.Upgrade += UpgradeLv;
         DataAutoSave();
     }
 
     public void SwordUpgread()
     {
-        if (Diamond < 100)
+        if (uiCurrent.Diamond < 100)
         {
             Shortage.SetActive(true);
             UIFade.instance.StartCoroutine("FadeIn");
         }
-        else if(Diamond >= 100)
+        else if(uiCurrent.Diamond >= 100)
         {
-            Diamond -= 100; // ���̾� ����
-            SwordDamage += 5; // ���� ���ݷ� �ø���
-            UpgradeCount++;
+            uiCurrent.Diamond -= 100; // 다이아 삭제
+            uiCurrent.SwordDamage += 5; // 공격력 증가
+            uiCurrent.UpgradeCount++;
             DataAutoSave();
         }
-      //  Shortage.SetActive(false);
     }
 
     public void DataAutoLoad()
     {
-        Diamond = PlayerPrefs.GetInt("Diamond");
-        SwordDamage = PlayerPrefs.GetInt("SwordDamage");
-        Upgrade = PlayerPrefs.GetInt("Upgrade");
-        UpgradeCount = PlayerPrefs.GetInt("UpgradeCount");
+        uiCurrent.Diamond = PlayerPrefs.GetInt("Diamond");
+        uiCurrent.SwordDamage = PlayerPrefs.GetInt("SwordDamage");
+        uiCurrent.Upgrade = PlayerPrefs.GetInt("Upgrade");
+        uiCurrent.UpgradeCount = PlayerPrefs.GetInt("UpgradeCount");
     }
 
     public void DataAutoSave()
     {
-        PlayerPrefs.SetInt("Diamond", Diamond);
-        PlayerPrefs.SetInt("SwordDamage", SwordDamage);
-        PlayerPrefs.SetInt("Upgrade", Upgrade);
-        PlayerPrefs.SetInt("UpgradeCount", UpgradeCount);
+        PlayerPrefs.SetInt("Diamond", uiCurrent.Diamond);
+        PlayerPrefs.SetInt("SwordDamage", uiCurrent.SwordDamage);
+        PlayerPrefs.SetInt("Upgrade", uiCurrent.Upgrade);
+        PlayerPrefs.SetInt("UpgradeCount", uiCurrent.UpgradeCount);
     }
 }

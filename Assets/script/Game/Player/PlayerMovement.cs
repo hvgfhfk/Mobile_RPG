@@ -6,29 +6,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    protected Animator avatar;
+    [SerializeField]
+    private Player playerCurrent;
     protected PlayerAttack playerAttack;
 
-    protected Effect effect;
-
-    float lastAttackTime, lastDashTime;
-
-    // h : horizontal 가로 방향
-    // v : Vertical 세로 방향
-
     float h, v;
-    
-    [SerializeField]
-    private bool attacking = false;
-    [SerializeField]
-    private bool dashing = false;
 
     private void Start()
     {
-        avatar = GetComponent<Animator>();
         playerAttack = GetComponent<PlayerAttack>();
-        // 게임 오브젝트 effect를 찾고 그 안에 effect 스크립트를 참3
-        effect = GameObject.Find("Effect").GetComponent<Effect>();
     }
 
     public void onStickChanged(Vector2 stickPos)
@@ -44,9 +30,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Rotation()
     {
-        if (avatar)
+        if (playerCurrent.p_anim)
         {
-            avatar.SetFloat("Speed", (h * h + v * v));
+            playerCurrent.p_anim.SetFloat("Speed", (h * h + v * v));
 
             Rigidbody rigidbody = GetComponent<Rigidbody>();
 
@@ -65,28 +51,28 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnAttackDown()
     {
-        attacking = true;
-        avatar.SetBool("Combo", true);
+        playerCurrent.attacking = true;
+        playerCurrent.p_anim.SetBool("Combo", true);
         StartCoroutine(StartAttack());
     }
 
     public void OnAttackUp()
     {
-        avatar.SetBool("Combo", false);
-        attacking = false;
+        playerCurrent.p_anim.SetBool("Combo", false);
+        playerCurrent.attacking = false;
         //Destroy(NormalHit, 2.0f);
     }
 
     IEnumerator StartAttack()
     {
-        if (Time.time - lastAttackTime > 1f)
+        if (Time.time - playerCurrent.LastAttackTime > 1f)
         {
-            lastAttackTime = Time.time; // 선언된 시점부터 시간 계산
-            while (attacking)
+            playerCurrent.LastAttackTime = Time.time; // 선언된 시점부터 시간 계산
+            while (playerCurrent.attacking)
             {
-                avatar.SetTrigger("AttackStart");
+                playerCurrent.p_anim.SetTrigger("AttackStart");
                 playerAttack.NormalAttack();
-                effect.Normal_effect();
+                playerCurrent.effect.Normal_effect();
                 //Instantiate(NormalHit, transform.position, Quaternion.identity);
 
                 yield return new WaitForSeconds(1f);
@@ -96,20 +82,20 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnDashDown()
     {
-        
-        if (Time.time - lastDashTime > 3.0f)
+
+        if (Time.time - playerCurrent.LastDashTime > 3.0f)
         {
-            dashing = true;
-            lastDashTime = Time.time;
-            avatar.SetTrigger("Dash");
+            playerCurrent.dashing = true;
+            playerCurrent.LastDashTime = Time.time;
+            playerCurrent.p_anim.SetTrigger("Dash");
             playerAttack.DashAttack();
-            effect.dashing_Effect();
+            playerCurrent.effect.dashing_Effect();
         }
     }
 
     public void OnDashUp()
     {
-        dashing = false;
+        playerCurrent.dashing = false;
     }
 
 }

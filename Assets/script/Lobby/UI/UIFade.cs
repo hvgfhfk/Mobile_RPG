@@ -13,10 +13,6 @@ public class UIFade : MonoBehaviour
     private void Awake()
     {
         UIFade.instance = this;
-    }
-
-    private void Start()
-    {
         text = GetComponent<Text>();
     }
 

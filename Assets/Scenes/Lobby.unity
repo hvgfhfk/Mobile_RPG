@@ -321,15 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e56d3efa4cfdcd4d97b2fa33af3c4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiCurrent: {fileID: 2077016131}
   Shortage: {fileID: 307540526}
-  Diamond: 0
-  UpgradeCount: 0
-  Upgrade: 0
-  SwordDamage: 5
-  NormalDamage: 5
-  DashDamage: 25
-  NormalCalc: 0
-  DashCalc: 0
 --- !u!1001 &250736608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -436,6 +429,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498354248783199259, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498354248783199259, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498354248783199259, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498354248783199259, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498354248783199259, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498354248783199259, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827943103319409374, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827943103602509880, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827943103602509881, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4340337003107144791, guid: 07f45ddc13dbe48c2adb2a58fdc80914, type: 3}
@@ -1954,7 +1992,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 10, y: -3, z: 0}
 --- !u!45 &1282057312
 Skybox:
@@ -2696,6 +2734,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2077016130}
+  - component: {fileID: 2077016131}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2719,6 +2758,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2077016131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077016129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01865e3a0a2f26d48b3e2735dc94a71f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpgradeCount: 0
+  Upgrade: 0
+  SwordDamage: 5
+  NormalDamage: 5
+  DashDamage: 25
+  Diamond: 0
+  NormalCalc: 0
+  DashCalc: 0
+  Exp: 0
+  MaxExp: 100
+  Lv: 1
+  DeadCount: 0
+  MonsterMaxDead: 0
 --- !u!1 &2117569527
 GameObject:
   m_ObjectHideFlags: 0

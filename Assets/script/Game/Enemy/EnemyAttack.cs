@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField]
-    private int attackDamage = 10;
+    private EnemyCurrent enemyCurrent;
 
-    GameObject player;
     PlayerHealth playerHealth;
     EnemyMove enemymove;
+    GameObject player; // 공격 대상
 
     private void Awake()
     {
@@ -30,7 +30,11 @@ public class EnemyAttack : MonoBehaviour
     {
         if(playerHealth.currentHealth > 0)
         {
-            playerHealth.TakeDamage(attackDamage);
+            playerHealth.TakeDamage(enemyCurrent.AttackDamage);
+        }
+        else if(playerHealth.currentHealth <= 0)
+        {
+           enemyCurrent.PlayerStateCheck();
         }
     }
 }

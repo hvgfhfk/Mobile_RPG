@@ -6,12 +6,9 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField]
-    private int startingHealth = 100; // 플레이어 시작 체력
+    private Player playerCurrent;
 
     public int currentHealth = 0; // 현재 체력
-
-    [SerializeField]
-    private bool isdead = false; // 죽음 확인
 
     // 체력 게이지 UI와 연결된 변수
     public Slider healthSlider;
@@ -19,34 +16,27 @@ public class PlayerHealth : MonoBehaviour
     public Image damageImage;
 
     // 화면이 변한뒤 투명한 상태로 돌아가는 속도
-    public float flashSpeed = 5f;
+    private float flashSpeed;
     // 데미지를 입었을때 변하는 색상
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
-
-    // 애니메이터 변수
-    Animator anim;
 
     // 플레이어 움직임 관리 스크립트
     PlayerMovement playerMovement;
     PlayerAttack playerAttack;
-    // 데미지 입었는지 확인 (player)
-    [SerializeField]
-    private bool damaged;
+
 
     private void Awake()
     {
-        // 애니메이터 컴포넌트
-        anim = GetComponent<Animator>();
         // playermovement 스크립트
         playerMovement = GetComponent<PlayerMovement>();
         playerAttack = GetComponent<PlayerAttack>();
         // 현재 체력을 최대 체력으로 설정
-        currentHealth = startingHealth;
+        currentHealth = playerCurrent.startingHealth;
     }
 
     private void Update()
     {
-        if(damaged)
+        if(playerCurrent.damaged)
         {
             damageImage.color = flashColour;
         }
@@ -54,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
         {
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
-        damaged = false;
+        playerCurrent.damaged = false;
 
     }
 
@@ -66,7 +56,8 @@ public class PlayerHealth : MonoBehaviour
         healthSlider.value = currentHealth; // *
 
         // 만약 체력 0이면
-        if(currentHealth <= 0 && !isdead)
+        if(currentHealth <= 0 && !playerCurrent.isdead)
+       //if(currentHealth <= 0)
         {
             // Death 함수 호출
             Death();
@@ -75,12 +66,13 @@ public class PlayerHealth : MonoBehaviour
 
     void Death()
     {
-        isdead = true;
+        playerCurrent.isdead = true;
         // 애니메이션 Die 트리거 발동
-        anim.SetTrigger("Die");
-        EnemyMove.instance.traceDist = 0f; // 적 추적 사거리 0으로 초기화
-        EnemyMove.instance.attackDist = 0f; // 적 공격 사거리 0으로 초기화
+        playerCurrent.p_anim.SetTrigger("Die");
+       // EnemyMove.instance.traceDist = 0f; // 적 추적 사거리 0으로 초기화
+       // EnemyMove.instance.attackDist = 0f; // 적 공격 사거리 0으로 초기화
         EnemySpawn.instance.CancelInvoke("Spawn");
+
         // 움직임 스크립트 비활성화
         playerMovement.enabled = false;
         playerAttack.enabled = false;
@@ -90,11 +82,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void recovery_strength()
     { // 체력 회복
-        if(currentHealth <= startingHealth)
+        if(currentHealth <= playerCurrent.startingHealth)
         {
             currentHealth += 20;
             healthSlider.value = currentHealth; // *
         }
     }
-
 }

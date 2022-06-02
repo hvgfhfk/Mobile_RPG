@@ -6,9 +6,10 @@ using TMPro;
 
 public class DamageText : MonoBehaviour
 {
-    private float moveSpeed;
-    private float alphaSpeed;
-    private float destroyTime;
+    private float moveSpeed = 2.0f;
+    private float alphaSpeed = 2.0f;
+    private float destroyTime = 2.0f;
+
     TextMeshPro text;
     Color alpha;
     public int damage;
@@ -16,10 +17,6 @@ public class DamageText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveSpeed = 2.0f;
-        alphaSpeed = 2.0f;
-        destroyTime = 2.0f;
-
         text = GetComponent<TextMeshPro>();
         alpha = text.color;
         text.text = damage.ToString();

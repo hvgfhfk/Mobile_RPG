@@ -6,43 +6,34 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private int Exp = 0;
-    [SerializeField]
-    private float MaxExp = 100.0f;
-    [SerializeField]
-    private int Diamond = 0;
-    [SerializeField]
-    private int Lv = 1;
-
-    public int DeadCount = 0;
-    public int MonsterMaxDead;
+    private UI uiCurrent;
 
     public static GameManager instance;
 
     private void Awake()
     {
         GameManager.instance = this;
-        MonsterMaxDead = Random.Range(5, 15);
+        uiCurrent.MonsterMaxDead = Random.Range(5, 15);
         DataAutoLoad();
     }
 
     public void GetDiamond(int newDia)
     {
-        Diamond += newDia;
+        uiCurrent.Diamond += newDia;
         DataAutoSave();
     }
 
     public void GetExp(int GetExp)
     {
-        if (Exp <= MaxExp)
+        if (uiCurrent.Exp <= uiCurrent.MaxExp)
         {
-            Exp += GetExp;
-            if (Exp >= MaxExp)
+            uiCurrent.Exp += GetExp;
+            if (uiCurrent.Exp >= uiCurrent.MaxExp)
             {
-                Exp = 0; // ����ġ �ʱ�ȭ
+                uiCurrent.Exp = 0; // 경험치 초기화
                 WeaponManager.instance.UpgradeData(1);
                 WeaponManager.instance.DamageCalc();
-                ++Lv; // ������
+                ++uiCurrent.Lv; // 레벨 증가
             }
             DataAutoSave();
         }
@@ -53,17 +44,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync("Lobby");
     }
 
-    public void DataAutoLoad() // ������ �ε�
+    public void DataAutoLoad() // 데이터 불러오기
     {
-        Diamond = WeaponManager.instance.Diamond;
+        //uiCurrent.Diamond = WeaponManager.instance.Diamond;
 
-        Lv = PlayerPrefs.GetInt("Level"); // ���� ������ ��������
-        Exp = PlayerPrefs.GetInt("Exp");
+        uiCurrent.Lv = PlayerPrefs.GetInt("Level");
+        uiCurrent.Exp = PlayerPrefs.GetInt("Exp");
     }
-    public void DataAutoSave() // ������ ���̺�
+    public void DataAutoSave() // 데이터 세이브
     {
-        PlayerPrefs.SetInt("Exp", Exp);
-        PlayerPrefs.SetInt("Level", Lv);
-        PlayerPrefs.SetInt("Diamond", Diamond);
+        PlayerPrefs.SetInt("Exp", uiCurrent.Exp);
+        PlayerPrefs.SetInt("Level", uiCurrent.Lv);
+        PlayerPrefs.SetInt("Diamond", uiCurrent.Diamond);
     }
 }

@@ -5,34 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject[] enemy;
-    //public List<GameObject> enemy = new List<GameObject>();
+    [SerializeField]
+    private UI uiCurrent;
+
     public static EnemySpawn instance;
 
+    public Transform[] spawnPools; // 적 생성 위치
+    public GameObject[] enemyPrefabs; // 적 프리팹
+
     [SerializeField]
-    private float intervalTime = 10f;
-    public Transform[] spawnPools;
+    private float IntervalTime = 10.0f; // 적 생성 시간
 
     private void Awake()
     {
         EnemySpawn.instance = this;
-    }
-
-    private void Start()
-    {
-        InvokeRepeating("Spawn", intervalTime, intervalTime);
+        InvokeRepeating("Spawn", IntervalTime, IntervalTime);
     }
 
     void Spawn()
     {
-        int spawnPoolInbox = Random.Range(0, spawnPools.Length);
-        int MonsterSpawnNumber = Random.Range(0, enemy.Length); // �����Լ��� ����� ����
-        Instantiate(enemy[MonsterSpawnNumber], spawnPools[spawnPoolInbox].position, spawnPools[spawnPoolInbox].rotation);
+        int spawnPoolInBox = Random.Range(0, spawnPools.Length);
+        int MonsterSpawnNumber = Random.Range(0, enemyPrefabs.Length); // �����Լ��� ����� ����
+        Instantiate(enemyPrefabs[MonsterSpawnNumber], spawnPools[spawnPoolInBox].position, spawnPools[spawnPoolInBox].rotation);
     }
 
     public void StopSpawn()
     {
-        if(GameManager.instance.DeadCount >= GameManager.instance.MonsterMaxDead)
+        if(uiCurrent.DeadCount >= uiCurrent.MonsterMaxDead)
         {
             CancelInvoke("Spawn");
             StartCoroutine(nextSence());

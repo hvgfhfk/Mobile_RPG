@@ -5,54 +5,41 @@ using UnityEngine.AI;
 
 public class EnemyMove : MonoBehaviour
 {
-    public static EnemyMove instance;
+    UnityEngine.AI.NavMeshAgent nav;
+    public Transform player;
+
+    [SerializeField]
+    private EnemyCurrent enemyCurrent;
 
     public enum CurrentState { idle, trace, attack, dead };
     public CurrentState curState = CurrentState.idle;
 
-    Transform player;
-    Animator anim;
-    UnityEngine.AI.NavMeshAgent nav;
-
-    [SerializeField]
-    private bool isDead; // 죽음 확인
-
-    public float traceDist = 10.0f; // 사거리
-    public float attackDist = 1.5f; // 공격 사거리
-
     private void Awake()
     {
-        EnemyMove.instance = this;
-
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        anim = GetComponent<Animator>();
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
-    }
 
-    private void Update()
-    {
         StartCoroutine(this.CheckState());
         StartCoroutine(this.CheckStateForAction());
     }
 
     IEnumerator CheckState()
     {
-        while(!isDead)
+        while(!enemyCurrent.isDead)
         {
             yield return new WaitForSeconds(0.2f);
 
             float dist = Vector3.Distance(player.position, transform.position);
 
-            if(dist <= attackDist)
+            if(dist <= enemyCurrent.attackDist)
             {
                 curState = CurrentState.attack;
             }
-            else if(dist <= traceDist)
+            else if(dist <= enemyCurrent.traceDist)
             {
                 curState = CurrentState.trace;
             }
-            else if(isDead)
+            else if(enemyCurrent.isDead)
             {
                 curState = CurrentState.dead;
             }
@@ -69,26 +56,26 @@ public class EnemyMove : MonoBehaviour
 
     IEnumerator CheckStateForAction()
     {
-        while(!isDead)
+        while(!enemyCurrent.isDead)
         {
             switch(curState)
             {
                 case CurrentState.idle:
                     nav.Stop();
-                    anim.SetBool("isAttack", false);
-                    anim.SetBool("isTrace", false);
+                    enemyCurrent.m_anim.SetBool("isAttack", false);
+                    enemyCurrent.m_anim.SetBool("isTrace", false);
                     break;
 
                 case CurrentState.trace:
                     nav.destination = player.position;
                     nav.Resume();
-                    anim.SetBool("isAttack", false);
-                    anim.SetBool("isTrace", true);
+                    enemyCurrent.m_anim.SetBool("isAttack", false);
+                    enemyCurrent.m_anim.SetBool("isTrace", true);
                     break;
                 case CurrentState.attack:
                     nav.Stop();
-                    anim.SetBool("isTrace", false);
-                    anim.SetBool("isAttack", true);
+                    enemyCurrent.m_anim.SetBool("isTrace", false);
+                    enemyCurrent.m_anim.SetBool("isAttack", true);
                     break;
                 case CurrentState.dead:
 

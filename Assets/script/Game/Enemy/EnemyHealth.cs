@@ -3,32 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
-    // 변수
     [SerializeField]
-    private int startingHealth = 100;
+    private EnemyCurrent enemyCurrent;
     [SerializeField]
-    private float sinkSpeed = 1f;
-
-    public int currentHealth;
-
-    [SerializeField]
-    private bool isDead;
-    [SerializeField]
-    private bool isSinking;
-
+    private UI uiCurrent;
     // 데미지 텍스트 표시를 위한 오브젝트 추가
     public GameObject hudDamageText;
     public Transform hudPos;
     public GameObject itemPrefab;
 
     // 컴포넌트
-    Animator m_anim;
+   // Animator m_anim;
     PlayerHealth playerHealth;
 
     private void Awake()
     {
-        currentHealth = startingHealth;
-        m_anim = GetComponent<Animator>();
+        uiCurrent = GameObject.Find("Manager").GetComponent<UI>();
+        enemyCurrent.CurrentHealth = enemyCurrent.StartingHealth;
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
         
     }
@@ -36,16 +27,16 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
 
-        m_anim.SetTrigger("isGetHit");
+        enemyCurrent.m_anim.SetTrigger("isGetHit");
 
         GameObject hudText = Instantiate(hudDamageText);
         hudText.transform.position = hudPos.position;
         hudText.GetComponent<DamageText>().damage = amount;
 
-        currentHealth -= amount;
+        enemyCurrent.CurrentHealth -= amount;
 
         // 몬스터 죽음 
-        if (currentHealth <= 0 && !isDead)
+        if (enemyCurrent.CurrentHealth <= 0 && !enemyCurrent.isDead)
         {
             Death();
         }
@@ -68,24 +59,24 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if(isSinking)
-        {
-            transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
-        }
-    }
+   // private void Update()
+   // {
+       // if(isSinking)
+       // {
+       //     transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
+       // }
+  //  }
 
     void Death()
     {
-        isDead = true;
+        enemyCurrent.isDead = true;
 
         transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
         transform.GetComponent<SphereCollider>().enabled = false;
 
         // 몬스터가 죽었을 경우 플레이어의 체력 회복
         playerHealth.recovery_strength();
-        GameManager.instance.DeadCount += 1;
+        uiCurrent.DeadCount += 1;
         Destroy(gameObject);
         DropItem();
       //  this.onDie();
