@@ -32,6 +32,6 @@ public class DataManager : MonoBehaviour
         Exp.text = PlayerPrefs.GetInt("Exp").ToString() + " / 100";
         Level.text = PlayerPrefs.GetInt("Level").ToString() + " Lv";
         expslider.value = PlayerPrefs.GetInt("Exp");
-        UpgradeCount.text = "업그레이드 횟수 : " + PlayerPrefs.GetInt("UpgradeCount").ToString();
+        UpgradeCount.text = "강화 횟수 : " + PlayerPrefs.GetInt("UpgradeCount").ToString();
     }
 }
