@@ -37,7 +37,7 @@ public class DataManager : MonoBehaviour
         Level.text = PlayerPrefs.GetInt("Level").ToString() + " Lv";
         expslider.value = PlayerPrefs.GetInt("Exp");
         playerCurrent.startingHealth = PlayerPrefs.GetInt("StartingHealth");
-        UpgradeCount.text = "강화 횟수 : " + PlayerPrefs.GetInt("UpgradeCount").ToString();
+        UpgradeCount.text = "강화 횟수 : " + PlayerPrefs.GetInt("SwordUpgradeCount").ToString();
         DefensiveCount.text = "강화 횟수 : " + PlayerPrefs.GetInt("DefensiveCount").ToString();
     }
 }
