@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private UI uiCurrent;
+    [SerializeField]
+    private Player playerCurrent;
 
     public static GameManager instance;
 
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
 
         uiCurrent.Lv = PlayerPrefs.GetInt("Level");
         uiCurrent.Exp = PlayerPrefs.GetInt("Exp");
+        playerCurrent.startingHealth = PlayerPrefs.GetInt("StartingHealth");
     }
     public void DataAutoSave() // 데이터 세이브
     {

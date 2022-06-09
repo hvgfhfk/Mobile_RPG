@@ -30,8 +30,11 @@ public class PlayerHealth : MonoBehaviour
         // playermovement 스크립트
         playerMovement = GetComponent<PlayerMovement>();
         playerAttack = GetComponent<PlayerAttack>();
+
+        healthSlider.maxValue = playerCurrent.startingHealth; // &
+
         // 현재 체력을 최대 체력으로 설정
-        currentHealth = playerCurrent.startingHealth;
+        currentHealth = playerCurrent.startingHealth; // *
     }
 
     private void Update()
@@ -82,10 +85,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void recovery_strength()
     { // 체력 회복
-        if(currentHealth <= playerCurrent.startingHealth)
+        if(currentHealth <= healthSlider.maxValue)
         {
             currentHealth += 20;
-            healthSlider.value = currentHealth;
+            healthSlider.value = currentHealth; // *
         }
     }
 }

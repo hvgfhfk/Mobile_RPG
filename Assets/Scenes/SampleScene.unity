@@ -552,6 +552,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _color: {r: 0.9339623, g: 0.4910663, b: 0.36565503, a: 1}
   _radius: 1
+--- !u!114 &567762221 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5827943103602509878, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+    type: 3}
+  m_PrefabInstance: {fileID: 5827943103380839276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bc78dd0ce7de34085a3b44c7bc1ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &569672304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,9 +1420,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2003,6 +2015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiCurrent: {fileID: 255462727}
+  playerCurrent: {fileID: 567762221}
 --- !u!1 &1939175352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2445,6 +2458,11 @@ PrefabInstance:
       propertyPath: dashingHit
       value: 
       objectReference: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
+    - target: {fileID: 5827943103602509878, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: startingHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5827943103602509880, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
         type: 3}
       propertyPath: uiCurrent

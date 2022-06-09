@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public bool dashing = false; // 스킬 사용 여부
     public GameObject NormalHit; // 일반 공격 이펙트
     public GameObject dashingHit; // 스킬 공격 이펙트
-    public int startingHealth; // 플레이어 시작 체력
     public bool isdead = false; // 죽음 확인
     public bool damaged; // 데미지 입었는지 확인 (player)
+    public int startingHealth;
 }
