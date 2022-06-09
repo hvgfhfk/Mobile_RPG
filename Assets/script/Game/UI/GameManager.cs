@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
         uiCurrent.Lv = PlayerPrefs.GetInt("Level");
         uiCurrent.Exp = PlayerPrefs.GetInt("Exp");
-        playerCurrent.startingHealth = PlayerPrefs.GetInt("StartingHealth");
+        playerCurrent.startingHealth = PlayerPrefs.GetInt("upgradeDefensive");
     }
     public void DataAutoSave() // 데이터 세이브
     {

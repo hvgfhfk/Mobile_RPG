@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         // playermovement 스크립트
         playerMovement = GetComponent<PlayerMovement>();
         playerAttack = GetComponent<PlayerAttack>();
+        //currentHealth = playerCurrent.startingHealth;
     }
 
     private void Start()

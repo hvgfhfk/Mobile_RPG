@@ -10,13 +10,11 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private UI uiCurrent;
 
-    Button upgreadbutton;
     public GameObject Shortage;
 
     private void Awake()
     {
         WeaponManager.instance = this;
-        upgreadbutton = GetComponent<Button>();
         DamageCalc();
         DataAutoLoad();
     }

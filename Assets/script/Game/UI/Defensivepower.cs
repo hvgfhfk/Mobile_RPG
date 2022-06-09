@@ -8,24 +8,51 @@ public class Defensivepower : MonoBehaviour
     [SerializeField]
     Player playerCurrent;
 
-    public int upgradeCount;
+    [SerializeField]
+    private UI uiCurrent;
+
+    public GameObject Shortage;
+
+    //public int upgradeCount;
+    //public int upgradeDefensive;
 
     private void Awake()
     {
-        upgradeCount = PlayerPrefs.GetInt("DefensiveCount");
+        uiCurrent.upgradeDefensiveCount = PlayerPrefs.GetInt("DefensiveCount");
+       // playerCurrent.startingHealth += uiCurrent.upgradeDefensive;
+        DataAutoLoad();
     }
 
     public void UpgradeDefnsivePower()
     {
-        playerCurrent.startingHealth += 5;
-        upgradeCount++;
-        DataAutoSave();
+        if(uiCurrent.Diamond < 100)
+        {
+            Shortage.SetActive(true);
+            UIFade.instance.StartCoroutine("FadeIn");
+        }
+        else if(uiCurrent.Diamond >= 100)
+        {
+            Debug.Log(playerCurrent.startingHealth);
+            uiCurrent.Diamond -= 100;
+            uiCurrent.upgradeDefensive += 5;
+            uiCurrent.upgradeDefensiveCount++;
+            //playerCurrent.startingHealth += uiCurrent.upgradeDefensive;
+            DataAutoSave();
+        }
+    }
+
+    public void DataAutoLoad()
+    {
+        uiCurrent.Diamond = PlayerPrefs.GetInt("Diamond");
+        uiCurrent.upgradeDefensive = PlayerPrefs.GetInt("Defensive");
     }
 
     public void DataAutoSave()
     {
-        PlayerPrefs.SetInt("DefensiveCount", upgradeCount);
-        PlayerPrefs.SetInt("StartingHealth", playerCurrent.startingHealth);
+        PlayerPrefs.SetInt("Diamond", uiCurrent.Diamond);
+        PlayerPrefs.SetInt("DefensiveCount", uiCurrent.upgradeDefensiveCount);
+        PlayerPrefs.SetInt("upgradeDefensive", playerCurrent.startingHealth + uiCurrent.upgradeDefensive);
+        PlayerPrefs.SetInt("Defensive", uiCurrent.upgradeDefensive);
     }
     
 }

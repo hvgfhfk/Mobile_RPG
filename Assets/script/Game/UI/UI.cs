@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
+    [SerializeField]
+    Player playerCurrent;
+
     public int SwordUpgradeCount;  // 무기 업그레이드 수
     public int LevelUpDamageUpgradeCount; // 레벨업 시 업그레이드
     public int SwordDamage = 5; // 검 공격력
@@ -17,4 +20,7 @@ public class UI : MonoBehaviour
     public int Lv = 1; // 레발
     public int DeadCount = 0; // 죽인 횟수
     public int MonsterMaxDead; // 최대 죽여야 하는 횟수
+    public int upgradeDefensiveCount; // 방어력 업그레이드 횟수
+    public int upgradeDefensive; // 증가 방어력
+
 }
