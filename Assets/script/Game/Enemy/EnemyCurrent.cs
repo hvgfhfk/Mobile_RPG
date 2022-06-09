@@ -7,13 +7,13 @@ public class EnemyCurrent : MonoBehaviour
     [SerializeField]
     private Player player;
 
-    public string EnemyName; // ÀûÀÌ¸§
-    public int CurrentHealth; // Àû ÇöÀç HP
-    public float traceDist; // ÃßÀû »ç°Å¸®
-    public float attackDist; // °ø°İ »ç°Å¸®
-    public int AttackDamage; // °ø°İ µ¥¹ÌÁö
-    public int StartingHealth; // ½ÃÀÛ hp
-    public bool isDead; // Á×À½ ¿©ºÎ
+    public string EnemyName; // ì ì´ë¦„
+    public int CurrentHealth; // ì  í˜„ì¬ HP
+    public float traceDist; // ì¶”ì  ì‚¬ê±°ë¦¬
+    public float attackDist; // ê³µê²© ì‚¬ê±°ë¦¬
+    public int AttackDamage; // ê³µê²© ë°ë¯¸ì§€
+    public int StartingHealth; // ì‹œì‘ hp
+    public bool isDead; // ì£½ìŒ ì—¬ë¶€
 
     public Animator m_anim;
 

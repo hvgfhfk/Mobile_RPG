@@ -6,13 +6,13 @@ public class Player : MonoBehaviour
 {
     public Animator p_anim;
     public Effect effect;
-    public float LastAttackTime; // ¸¶Áö¸· °ø°İ ½Ã°£
-    public float LastDashTime; // ¸¶Áö¸· ½ºÅ³ ½Ã°£
-    public bool attacking = false; // °ø°İ ¿©ºÎ
-    public bool dashing = false; // ½ºÅ³ »ç¿ë ¿©ºÎ
-    public GameObject NormalHit; // ÀÏ¹İ°ø°İ ÀÌÆåÆ®
-    public GameObject dashingHit; // ½ºÅ³ °ø°İ ÀÌÆåÆ®
-    public bool isdead = false; // Á×À½ ¿©ºÎ
-    public bool damaged; // µ¥¹ÌÁö¸¦ ¹Ş¾Ò´ÂÁö È®ÀÎ(player)
+    public float LastAttackTime; // ë§ˆì§€ë§‰ ê³µê²© ì‹œê°„
+    public float LastDashTime; // ë§ˆì§€ë§‰ ìŠ¤í‚¬ ì‹œê°„
+    public bool attacking = false; // ê³µê²© ì—¬ë¶€
+    public bool dashing = false; // ìŠ¤í‚¬ ì‚¬ìš© ì—¬ë¶€
+    public GameObject NormalHit; // ì¼ë°˜ê³µê²© ì´í™íŠ¸
+    public GameObject dashingHit; // ìŠ¤í‚¬ ê³µê²© ì´í™íŠ¸
+    public bool isdead = false; // ì£½ìŒ ì—¬ë¶€
+    public bool damaged; // ë°ë¯¸ì§€ë¥¼ ë°›ì•˜ëŠ”ì§€ í™•ì¸(player)
     public int startingHealth;
 }

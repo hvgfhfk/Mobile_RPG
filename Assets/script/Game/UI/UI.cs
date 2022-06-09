@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
-    public int SwordUpgradeCount;  // ¹«±â ¾÷±×·¹ÀÌµå ¼ö
-    public int LevelUpDamageUpgradeCount; // ·¹º§¾÷ ½Ã ¾÷±×·¹ÀÌµå
-    public int SwordDamage = 5; // °Ë °ø°İ·Â
-    public int NormalDamage = 5; // ÀÏ¹İ °ø°İ·Â
-    public int DashDamage = 25; // ½ºÅ³ °ø°İ·Â
-    public int Diamond; // ´ÙÀÌ¾Æ¸ó½º ¼ö
-    public int NormalCalc = 0; // ÀÏ¹İ °ø°İ µ¥¹ÌÁö °è»ê
-    public int DashCalc = 0; // ½ºÅ³ µ¥¹ÌÁö °è»ê
-    public int Exp = 0; // °æÇèÄ¡
-    public float MaxExp = 100.0f; // ÃÖ´ë °æÇèÄ¡
-    public int Lv = 1; // ·¹¹ß
-    public int DeadCount = 0; // Á×ÀÎ È½¼ö
-    public int MonsterMaxDead; // ÃÖ´ë Á×¿©¾ß ÇÏ´Â È½¼ö
+    public int SwordUpgradeCount;  // ë¬´ê¸° ì—…ê·¸ë ˆì´ë“œ ìˆ˜
+    public int LevelUpDamageUpgradeCount; // ë ˆë²¨ì—… ì‹œ ì—…ê·¸ë ˆì´ë“œ
+    public int SwordDamage = 5; // ê²€ ê³µê²©ë ¥
+    public int NormalDamage = 5; // ì¼ë°˜ ê³µê²©ë ¥
+    public int DashDamage = 25; // ìŠ¤í‚¬ ê³µê²©ë ¥
+    public int Diamond; // ë‹¤ì´ì•„ëª¬ìŠ¤ ìˆ˜
+    public int NormalCalc = 0; // ì¼ë°˜ ê³µê²© ë°ë¯¸ì§€ ê³„ì‚°
+    public int DashCalc = 0; // ìŠ¤í‚¬ ë°ë¯¸ì§€ ê³„ì‚°
+    public int Exp = 0; // ê²½í—˜ì¹˜
+    public float MaxExp = 100.0f; // ìµœëŒ€ ê²½í—˜ì¹˜
+    public int Lv = 1; // ë ˆë°œ
+    public int DeadCount = 0; // ì£½ì¸ íšŸìˆ˜
+    public int MonsterMaxDead; // ìµœëŒ€ ì£½ì—¬ì•¼ í•˜ëŠ” íšŸìˆ˜
 }
