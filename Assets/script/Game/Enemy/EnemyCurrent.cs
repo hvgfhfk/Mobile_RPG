@@ -21,13 +21,4 @@ public class EnemyCurrent : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
-
-    public void PlayerStateCheck()
-    {
-        if(player.isdead == true)
-        {
-            attackDist = 0;
-            traceDist = 0;
-        }
-    }
 }

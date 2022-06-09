@@ -18,6 +18,8 @@ public class EnemySpawn : MonoBehaviour
 
     private void Awake()
     {
+        // 최대 몬스터를 죽여야 하는 횟수
+        uiCurrent.MonsterMaxDead = Random.Range(5, 15);
         EnemySpawn.instance = this;
         InvokeRepeating("Spawn", IntervalTime, IntervalTime);
     }
@@ -25,21 +27,18 @@ public class EnemySpawn : MonoBehaviour
     void Spawn()
     {
         int spawnPoolInBox = Random.Range(0, spawnPools.Length);
-        int MonsterSpawnNumber = Random.Range(0, enemyPrefabs.Length); // �����Լ��� ����� ����
+        int MonsterSpawnNumber = Random.Range(0, enemyPrefabs.Length); // 몬스터의 프리팹을 가져옴
         Instantiate(enemyPrefabs[MonsterSpawnNumber], spawnPools[spawnPoolInBox].position, spawnPools[spawnPoolInBox].rotation);
     }
 
     public void StopSpawn()
     {
-        if(uiCurrent.DeadCount >= uiCurrent.MonsterMaxDead)
-        {
-            CancelInvoke("Spawn");
-            StartCoroutine(nextSence());
-        }
+        CancelInvoke("Spawn");
+        StartCoroutine(nextSence());
     }
 
     IEnumerator nextSence()
-    { // �ش� ���Ͱ� ���������� ���Ͱ� �� �׾��� ��� ���������� �Ѿ��
+    { // 한 필드의 몬스터를 다 죽였을 경우 로비 씬으로 넘어감
 
         yield return new WaitForSeconds(10.0f);
         SceneManager.LoadSceneAsync("Lobby");

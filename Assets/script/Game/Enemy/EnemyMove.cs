@@ -43,10 +43,6 @@ public class EnemyMove : MonoBehaviour
             {
                 curState = CurrentState.dead;
             }
-           /* else if (PlayerHealth.instance.isdead == true)
-            {
-                curState = CurrentState.idle;
-            }*/
             else
             {
                 curState = CurrentState.idle;

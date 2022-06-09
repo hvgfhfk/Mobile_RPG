@@ -85,7 +85,7 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth <= playerCurrent.startingHealth)
         {
             currentHealth += 20;
-            healthSlider.value = currentHealth; // *
+            healthSlider.value = currentHealth;
         }
     }
 }

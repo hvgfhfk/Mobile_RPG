@@ -1305,8 +1305,8 @@ MonoBehaviour:
   - {fileID: 209461875}
   - {fileID: 711776631}
   enemyPrefabs:
-  - {fileID: 6904071794430279554, guid: 2ee355537ae7844f8b044be1dc185ef5, type: 3}
   - {fileID: 412537303899343331, guid: b2cd422330b8f4142b1e2aa66c7cd6a1, type: 3}
+  - {fileID: 6904071794430279554, guid: 2ee355537ae7844f8b044be1dc185ef5, type: 3}
   IntervalTime: 5
 --- !u!4 &1020201171
 Transform:

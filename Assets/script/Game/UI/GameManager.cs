@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GameManager.instance = this;
-        uiCurrent.MonsterMaxDead = Random.Range(5, 15);
         DataAutoLoad();
     }
 

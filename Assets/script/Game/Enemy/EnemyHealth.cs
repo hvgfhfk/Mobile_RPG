@@ -58,15 +58,6 @@ public class EnemyHealth : MonoBehaviour
             }
         }
     }
-
-   // private void Update()
-   // {
-       // if(isSinking)
-       // {
-       //     transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
-       // }
-  //  }
-
     void Death()
     {
         enemyCurrent.isDead = true;
@@ -79,9 +70,8 @@ public class EnemyHealth : MonoBehaviour
         uiCurrent.DeadCount += 1;
         Destroy(gameObject);
         DropItem();
-      //  this.onDie();
         GameManager.instance.GetExp(10);
-        EnemySpawn.instance.StopSpawn();
+        Countofkills();
     }
 
     void DropItem()
@@ -90,5 +80,13 @@ public class EnemyHealth : MonoBehaviour
         Diamond.transform.position = this.gameObject.transform.position;
      //   Diamond.SetActive(false);
         Diamond.SetActive(true);
+    }
+
+    private void Countofkills()
+    {
+        if (uiCurrent.DeadCount >= uiCurrent.MonsterMaxDead)
+        {
+            EnemySpawn.instance.StopSpawn();
+        }
     }
 }
