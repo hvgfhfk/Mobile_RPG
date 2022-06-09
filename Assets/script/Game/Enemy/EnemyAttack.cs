@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -49,6 +48,6 @@ public class EnemyAttack : MonoBehaviour
     IEnumerator NextSence()
     {
         yield return new WaitForSeconds(10.0f);
-        SceneManager.LoadSceneAsync("Lobby");
+        LoadSceneController.LoadScene("Lobby");
     }
 }

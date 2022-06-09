@@ -25,14 +25,14 @@ public class WeaponManager : MonoBehaviour
     {
         DataAutoLoad();
         // 데미지 계산
-        uiCurrent.NormalCalc = uiCurrent.SwordDamage + uiCurrent.NormalDamage + uiCurrent.Upgrade;
-        uiCurrent.DashCalc = uiCurrent.SwordDamage + uiCurrent.DashDamage + uiCurrent.Upgrade;
+        uiCurrent.NormalCalc = uiCurrent.SwordDamage + uiCurrent.NormalDamage + uiCurrent.LevelUpDamageUpgradeCount;
+        uiCurrent.DashCalc = uiCurrent.SwordDamage + uiCurrent.DashDamage + uiCurrent.LevelUpDamageUpgradeCount;
 
     }
 
     public void UpgradeData(int UpgradeLv)
     { // 레벨업
-        uiCurrent.Upgrade += UpgradeLv;
+        uiCurrent.LevelUpDamageUpgradeCount += UpgradeLv;
         DataAutoSave();
     }
 
@@ -47,7 +47,7 @@ public class WeaponManager : MonoBehaviour
         {
             uiCurrent.Diamond -= 100; // 다이아 삭제
             uiCurrent.SwordDamage += 5; // 공격력 증가
-            uiCurrent.UpgradeCount++;
+            uiCurrent.SwordUpgradeCount++;
             DataAutoSave();
         }
     }
@@ -56,15 +56,15 @@ public class WeaponManager : MonoBehaviour
     {
         uiCurrent.Diamond = PlayerPrefs.GetInt("Diamond");
         uiCurrent.SwordDamage = PlayerPrefs.GetInt("SwordDamage");
-        uiCurrent.Upgrade = PlayerPrefs.GetInt("Upgrade");
-        uiCurrent.UpgradeCount = PlayerPrefs.GetInt("UpgradeCount");
+        uiCurrent.LevelUpDamageUpgradeCount = PlayerPrefs.GetInt("LevelUpDamageUpgradeCount");
+        uiCurrent.SwordUpgradeCount = PlayerPrefs.GetInt("SwordUpgradeCount");
     }
 
     public void DataAutoSave()
     {
         PlayerPrefs.SetInt("Diamond", uiCurrent.Diamond);
         PlayerPrefs.SetInt("SwordDamage", uiCurrent.SwordDamage);
-        PlayerPrefs.SetInt("Upgrade", uiCurrent.Upgrade);
-        PlayerPrefs.SetInt("UpgradeCount", uiCurrent.UpgradeCount);
+        PlayerPrefs.SetInt("LevelUpDamageUpgradeCount", uiCurrent.LevelUpDamageUpgradeCount);
+        PlayerPrefs.SetInt("SwordUpgradeCount", uiCurrent.SwordUpgradeCount);
     }
 }

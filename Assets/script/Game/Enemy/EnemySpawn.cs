@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -41,6 +40,6 @@ public class EnemySpawn : MonoBehaviour
     { // 한 필드의 몬스터를 다 죽였을 경우 로비 씬으로 넘어감
 
         yield return new WaitForSeconds(10.0f);
-        SceneManager.LoadSceneAsync("Lobby");
+        LoadSceneController.LoadScene("Lobby");
     }
 }

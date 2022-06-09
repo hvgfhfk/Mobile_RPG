@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void MoveLobby()
     {
-        SceneManager.LoadSceneAsync("Lobby");
+        LoadSceneController.LoadScene("Lobby");
     }
 
     public void DataAutoLoad() // 데이터 불러오기
