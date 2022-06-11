@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCurrent: {fileID: 260953304}
+  uiCurrent: {fileID: 0}
   expslider: {fileID: 1832722741}
   Diamond: {fileID: 1132180743}
   Exp: {fileID: 584968813}
@@ -341,7 +342,6 @@ MonoBehaviour:
   playerCurrent: {fileID: 260953304}
   uiCurrent: {fileID: 2077016131}
   Shortage: {fileID: 307540526}
-  upgradeCount: 0
 --- !u!1001 &250736608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3137,7 +3137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2008800284
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3258,6 +3258,8 @@ MonoBehaviour:
   Lv: 1
   DeadCount: 0
   MonsterMaxDead: 0
+  upgradeDefensiveCount: 0
+  upgradeDefensive: 0
 --- !u!1 &2117569527
 GameObject:
   m_ObjectHideFlags: 0
