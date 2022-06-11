@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
     // 데미지 텍스트 표시를 위한 오브젝트 추가
     public GameObject hudDamageText;
     public Transform hudPos;
+    // 아이템 프리팹
     public GameObject itemPrefab;
 
     // 컴포넌트
@@ -26,12 +27,11 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-
-        enemyCurrent.m_anim.SetTrigger("isGetHit");
-
         GameObject hudText = Instantiate(hudDamageText);
         hudText.transform.position = hudPos.position;
         hudText.GetComponent<DamageText>().damage = amount;
+
+        enemyCurrent.m_anim.SetTrigger("isGetHit");
 
         enemyCurrent.CurrentHealth -= amount;
 
