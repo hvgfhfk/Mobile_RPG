@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnDashDown()
     {
 
-        if (Time.time - playerCurrent.LastDashTime > 3.0f)
+        if (Time.time - playerCurrent.LastDashTime > 1f)
         {
             playerCurrent.dashing = true;
             playerCurrent.LastDashTime = Time.time;

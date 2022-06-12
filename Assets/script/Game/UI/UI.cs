@@ -20,6 +20,7 @@ public class UI : MonoBehaviour
     public int Lv = 1; // 레발
     public int DeadCount = 0; // 죽인 횟수
     public int MonsterMaxDead; // 최대 죽여야 하는 횟수
+    public int MonsterSpawnCount; // 몬스터 스폰 수
     public int upgradeDefensiveCount; // 방어력 업그레이드 횟수
     public int upgradeDefensive; // 증가 방어력
 

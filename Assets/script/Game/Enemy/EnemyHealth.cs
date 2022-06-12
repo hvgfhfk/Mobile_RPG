@@ -84,9 +84,10 @@ public class EnemyHealth : MonoBehaviour
 
     private void Countofkills()
     {
-        if (uiCurrent.DeadCount >= uiCurrent.MonsterMaxDead)
+        if (uiCurrent.DeadCount == uiCurrent.MonsterMaxDead)
         {
-            EnemySpawn.instance.StopSpawn();
+            EnemySpawn.instance.MonsterCountofKills();
         }
     }
+
 }

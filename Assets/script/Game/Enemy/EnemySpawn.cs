@@ -21,6 +21,7 @@ public class EnemySpawn : MonoBehaviour
         uiCurrent.MonsterMaxDead = Random.Range(5, 15);
         EnemySpawn.instance = this;
         InvokeRepeating("Spawn", IntervalTime, IntervalTime);
+        // StartCoroutine(StopMonsterSpawn());
     }
 
     void Spawn()
@@ -28,12 +29,23 @@ public class EnemySpawn : MonoBehaviour
         int spawnPoolInBox = Random.Range(0, spawnPools.Length);
         int MonsterSpawnNumber = Random.Range(0, enemyPrefabs.Length); // 몬스터의 프리팹을 가져옴
         Instantiate(enemyPrefabs[MonsterSpawnNumber], spawnPools[spawnPoolInBox].position, spawnPools[spawnPoolInBox].rotation);
+        uiCurrent.MonsterSpawnCount++;
+
+        if (uiCurrent.MonsterSpawnCount == uiCurrent.MonsterMaxDead)
+        {
+            CancelInvoke("Spawn");
+        }
     }
 
-    public void StopSpawn()
+
+    /*public void StopSpawn()
     {
         CancelInvoke("Spawn");
-        StartCoroutine(nextSence());
+    }*/
+
+    public void MonsterCountofKills()
+    {
+       StartCoroutine(nextSence());
     }
 
     IEnumerator nextSence()
@@ -42,4 +54,14 @@ public class EnemySpawn : MonoBehaviour
         yield return new WaitForSeconds(10.0f);
         LoadSceneController.LoadScene("Lobby");
     }
+
+   /* IEnumerator StopMonsterSpawn()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        if (uiCurrent.MonsterSpawnCount == uiCurrent.MonsterMaxDead)
+        {
+            CancelInvoke("Spawn");
+        }
+    }*/
 }
