@@ -61,33 +61,34 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         enemyCurrent.isDead = true;
-
+        uiCurrent.killCount += 1; // 킬 카운트 증가
         transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
         transform.GetComponent<SphereCollider>().enabled = false;
 
         // 몬스터가 죽었을 경우 플레이어의 체력 회복
         playerHealth.recovery_strength();
-        uiCurrent.DeadCount += 1;
         Destroy(gameObject);
-        DropItem();
+
+        // 경험치 증가
         GameManager.instance.GetExp(10);
-        Countofkills();
+        MonsterDropItem(); // 몬스터 아이템 드랍
+
+        MaxKillCount();
     }
 
-    void DropItem()
+    void MonsterDropItem()
     {
         var Diamond = Instantiate<GameObject>(this.itemPrefab);
         Diamond.transform.position = this.gameObject.transform.position;
-     //   Diamond.SetActive(false);
         Diamond.SetActive(true);
     }
 
-    private void Countofkills()
+    private void MaxKillCount()
     {
-        if (uiCurrent.DeadCount == uiCurrent.MonsterMaxDead)
+        if (uiCurrent.killCount == uiCurrent.MonsterMaxDead)
         {
-            EnemySpawn.instance.MonsterCountofKills();
+            EnemySpawn.instance.SenceMoveNext();
+            
         }
     }
-
 }

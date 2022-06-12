@@ -32,7 +32,7 @@ public class Defensivepower : MonoBehaviour
         }
         else if(uiCurrent.Diamond >= 100)
         {
-            Debug.Log(playerCurrent.startingHealth);
+           // Debug.Log(playerCurrent.startingHealth);
             uiCurrent.Diamond -= 100;
             uiCurrent.upgradeDefensive += 5;
             uiCurrent.upgradeDefensiveCount++;

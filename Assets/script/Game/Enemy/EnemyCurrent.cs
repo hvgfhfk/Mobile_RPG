@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyCurrent : MonoBehaviour
-{ // ?? ???? ????????
+{
     [SerializeField]
     private Player player;
 

@@ -18,7 +18,7 @@ public class UI : MonoBehaviour
     public int Exp = 0; // 경험치
     public float MaxExp = 100.0f; // 최대 경험치
     public int Lv = 1; // 레발
-    public int DeadCount = 0; // 죽인 횟수
+    public int killCount = 0; // 죽인 횟수
     public int MonsterMaxDead; // 최대 죽여야 하는 횟수
     public int MonsterSpawnCount; // 몬스터 스폰 수
     public int upgradeDefensiveCount; // 방어력 업그레이드 횟수

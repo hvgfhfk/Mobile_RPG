@@ -12,4 +12,5 @@ public class items : MonoBehaviour
             GameManager.instance.GetDiamond(100);
         }
     }
+
 }
