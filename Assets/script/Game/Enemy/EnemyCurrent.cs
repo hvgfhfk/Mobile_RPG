@@ -21,4 +21,5 @@ public class EnemyCurrent : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
+
 }

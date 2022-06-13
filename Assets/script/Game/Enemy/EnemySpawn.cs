@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
     [SerializeField]
+    EnemyCurrent enemyCurrent;
+
+    [SerializeField]
     private UI uiCurrent;
 
     public static EnemySpawn instance;
