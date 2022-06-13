@@ -15,4 +15,5 @@ public class Player : MonoBehaviour
     public bool isdead = false; // 죽음 여부
     public bool damaged; // 데미지를 받았는지 확인(player)
     public int startingHealth;
+
 }

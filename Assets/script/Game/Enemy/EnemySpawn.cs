@@ -18,7 +18,7 @@ public class EnemySpawn : MonoBehaviour
     private void Awake()
     {
         // 최대 몬스터를 죽여야 하는 횟수
-        uiCurrent.MonsterMaxDead = Random.Range(1, 3);
+        uiCurrent.MonsterMaxDead = Random.Range(5, 10);
         EnemySpawn.instance = this;
         InvokeRepeating("Spawn", IntervalTime, IntervalTime);
     }

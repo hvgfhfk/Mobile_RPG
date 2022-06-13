@@ -35,10 +35,21 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        // 현재 체력을 최대 체력으로 설정
-        healthSlider.maxValue = playerCurrent.startingHealth;
-        healthSlider.value = playerCurrent.startingHealth;
-        currentHealth = playerCurrent.startingHealth;
+        if (playerCurrent.startingHealth < 100)
+        {
+            playerCurrent.startingHealth = 100;
+            // 현재 체력을 최대 체력으로 설정
+            healthSlider.maxValue = playerCurrent.startingHealth;
+            healthSlider.value = playerCurrent.startingHealth;
+            currentHealth = playerCurrent.startingHealth;
+        }
+        else if(playerCurrent.startingHealth > 100)
+        {
+            // 현재 체력을 최대 체력으로 설정
+            healthSlider.maxValue = playerCurrent.startingHealth;
+            healthSlider.value = playerCurrent.startingHealth;
+            currentHealth = playerCurrent.startingHealth;
+        }
     }
 
     private void Update()
