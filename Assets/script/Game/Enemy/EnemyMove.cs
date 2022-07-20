@@ -19,9 +19,14 @@ public class EnemyMove : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
+    }
+
+    private void Start()
+    {
         StartCoroutine(this.CheckState());
         StartCoroutine(this.CheckStateForAction());
     }
+
 
     IEnumerator CheckState()
     {
@@ -57,19 +62,19 @@ public class EnemyMove : MonoBehaviour
             switch(curState)
             {
                 case CurrentState.idle:
-                    nav.Stop();
+                    //nav.Stop();
                     enemyCurrent.m_anim.SetBool("isAttack", false);
                     enemyCurrent.m_anim.SetBool("isTrace", false);
                     break;
 
                 case CurrentState.trace:
                     nav.destination = player.position;
-                    nav.Resume();
+                    //av.Resume();
                     enemyCurrent.m_anim.SetBool("isAttack", false);
                     enemyCurrent.m_anim.SetBool("isTrace", true);
                     break;
                 case CurrentState.attack:
-                    nav.Stop();
+                    //nav.Stop();
                     enemyCurrent.m_anim.SetBool("isTrace", false);
                     enemyCurrent.m_anim.SetBool("isAttack", true);
                     break;

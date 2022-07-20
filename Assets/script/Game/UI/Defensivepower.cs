@@ -11,6 +11,7 @@ public class Defensivepower : MonoBehaviour
     [SerializeField]
     private UI uiCurrent;
 
+    // 다이아 부족 메세지
     public GameObject Shortage;
 
     //public int upgradeCount;
@@ -19,11 +20,10 @@ public class Defensivepower : MonoBehaviour
     private void Awake()
     {
         uiCurrent.upgradeDefensiveCount = PlayerPrefs.GetInt("DefensiveCount");
-       // playerCurrent.startingHealth += uiCurrent.upgradeDefensive;
         DataAutoLoad();
     }
 
-    public void UpgradeDefnsivePower()
+    public void UpgradeDefensivePower()
     {
         if(uiCurrent.Diamond < 100)
         {
@@ -32,13 +32,21 @@ public class Defensivepower : MonoBehaviour
         }
         else if(uiCurrent.Diamond >= 100)
         {
-           // Debug.Log(playerCurrent.startingHealth);
-            uiCurrent.Diamond -= 100;
-            uiCurrent.upgradeDefensive += 5;
-            uiCurrent.upgradeDefensiveCount++;
-            //playerCurrent.startingHealth += uiCurrent.upgradeDefensive;
+            UseDiamond();
             DataAutoSave();
         }
+    }
+
+    private void UseDiamond()
+    { // 다이아 몬드 사용
+        uiCurrent.Diamond -= 100;
+        UpgradeDefensive();
+    }
+
+    private void UpgradeDefensive()
+    { // 방어력 업그레이드
+        uiCurrent.upgradeDefensive += 5;
+        uiCurrent.upgradeDefensiveCount++;
     }
 
     public void DataAutoLoad()

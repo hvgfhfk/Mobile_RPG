@@ -39,9 +39,7 @@ public class PlayerHealth : MonoBehaviour
         {
             playerCurrent.startingHealth = 100;
         }
-        healthSlider.maxValue = playerCurrent.startingHealth;
-        healthSlider.value = playerCurrent.startingHealth;
-        currentHealth = playerCurrent.startingHealth;
+        PlayerHpBar();
     }
 
     private void Update()
@@ -67,7 +65,6 @@ public class PlayerHealth : MonoBehaviour
 
         // 만약 체력 0이면
         if(currentHealth <= 0 && !playerCurrent.isdead)
-       //if(currentHealth <= 0)
         {
             // Death 함수 호출
             Death();
@@ -76,18 +73,17 @@ public class PlayerHealth : MonoBehaviour
 
     void Death()
     {
-        playerCurrent.isdead = true;
-        // 애니메이션 Die 트리거 발동
-        playerCurrent.p_anim.SetTrigger("Die");
-       // EnemyMove.instance.traceDist = 0f; // 적 추적 사거리 0으로 초기화
-       // EnemyMove.instance.attackDist = 0f; // 적 공격 사거리 0으로 초기화
-        EnemySpawn.instance.CancelInvoke("Spawn");
+        OnDie();
+        StopSpawn();
+        StopSkillAcitve();
+        ScriptEnableOFF();
+    }
 
-        // 움직임 스크립트 비활성화
-        playerMovement.enabled = false;
-        playerAttack.enabled = false;
-        GameObject.Find("SkillDash").SetActive(false);
-        GameObject.Find("ButtonAttack").SetActive(false);
+    private void PlayerHpBar()
+    { // 플레이어 hp바
+        healthSlider.maxValue = playerCurrent.startingHealth;
+        healthSlider.value = playerCurrent.startingHealth;
+        currentHealth = playerCurrent.startingHealth;
     }
 
     public void recovery_strength()
@@ -97,5 +93,25 @@ public class PlayerHealth : MonoBehaviour
             currentHealth += 20;
             healthSlider.value = currentHealth; // *
         }
+    }
+
+    private void OnDie()
+    { // 플레이어 죽음 확인/애니메이션
+        playerCurrent.isdead = true;
+        playerCurrent.p_anim.SetTrigger("Die");
+    }
+    private void StopSpawn()
+    { // 스폰 멈추기
+        EnemySpawn.instance.CancelInvoke("Spawn");
+    }
+    private void StopSkillAcitve()
+    { // 스킬 멈추기
+        GameObject.Find("SkillDash").SetActive(false);
+        GameObject.Find("ButtonAttack").SetActive(false);
+    }
+    private void ScriptEnableOFF()
+    { // 움직임 스크립트 , 공격 스크립트 비활성화
+        playerMovement.enabled = false;
+        playerAttack.enabled = false;
     }
 }

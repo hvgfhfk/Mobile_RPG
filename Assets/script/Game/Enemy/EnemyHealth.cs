@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
         uiCurrent = GameObject.Find("Manager").GetComponent<UI>();
         enemyCurrent.CurrentHealth = enemyCurrent.StartingHealth;
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
-        
+        //StartCoroutine("StartDamage");
     }
 
     public void TakeDamage(int amount)
@@ -62,16 +62,16 @@ public class EnemyHealth : MonoBehaviour
     {
         enemyCurrent.isDead = true;
         uiCurrent.killCount += 1; // 킬 카운트 증가
-        transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
-        transform.GetComponent<SphereCollider>().enabled = false;
-
-        // 몬스터가 죽었을 경우 플레이어의 체력 회복
-        playerHealth.recovery_strength();
+        
+        playerHealth.recovery_strength(); // 몬스터가 죽었을 경우 플레이어의 체력 회복
         Destroy(gameObject);
+        //EnemySpwanPooling.instance.InsertQueue(gameObject);
 
         // 경험치 증가
         GameManager.instance.GetExp(10);
         MonsterDropItem(); // 몬스터 아이템 드랍
+
+        gameObject.GetComponent<EnemyMove>().enabled = false;
 
         MaxKillCount();
     }

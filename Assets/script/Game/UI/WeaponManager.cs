@@ -10,6 +10,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private UI uiCurrent;
 
+    // 다이아 부족 메세지
     public GameObject Shortage;
 
     private void Awake()
@@ -43,11 +44,21 @@ public class WeaponManager : MonoBehaviour
         }
         else if(uiCurrent.Diamond >= 100)
         {
-            uiCurrent.Diamond -= 100; // 다이아 삭제
-            uiCurrent.SwordDamage += 5; // 공격력 증가
-            uiCurrent.SwordUpgradeCount++;
+            UseDiamond();
             DataAutoSave();
         }
+    }
+
+    private void UseDiamond()
+    {
+        uiCurrent.Diamond -= 100; // 다이아 사용
+        UpgradeSwordPower();
+    }
+
+    private void UpgradeSwordPower()
+    {
+        uiCurrent.SwordDamage += 5; // 공격력 증가
+        uiCurrent.SwordUpgradeCount++;
     }
 
     public void DataAutoLoad()

@@ -32,7 +32,9 @@ public class EnemySpawn : MonoBehaviour
         int MonsterSpawnNumber = Random.Range(0, enemyPrefabs.Length); // 몬스터의 프리팹을 가져옴
         Instantiate(enemyPrefabs[MonsterSpawnNumber], spawnPools[spawnPoolInBox].position, spawnPools[spawnPoolInBox].rotation);
         uiCurrent.MonsterSpawnCount++;
-
+        //GameObject target_Object = EnemySpwanPooling.instance.GetQueue();
+        //target_Object.transform.position = spawnPools[spawnPoolInBox].position;
+        
         if (uiCurrent.MonsterSpawnCount == uiCurrent.MonsterMaxDead)
         {
             CancelInvoke("Spawn");

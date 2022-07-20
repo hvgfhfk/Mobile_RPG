@@ -33,16 +33,8 @@ public class EnemyAttack : MonoBehaviour
         }
         else if(playerHealth.currentHealth <= 0)
         {
-           InvokeRepeating("PlayerStateCheck", 0.1f, 0.1f);
            StartCoroutine(NextSence());
-           
         }
-    }
-
-    void PlayerStateCheck()
-    {
-        enemyCurrent.attackDist = 0;
-        enemyCurrent.traceDist = 0;
     }
 
     IEnumerator NextSence()

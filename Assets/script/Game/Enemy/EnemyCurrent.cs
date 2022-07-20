@@ -20,6 +20,6 @@ public class EnemyCurrent : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        CurrentHealth = 100;
     }
-
 }
