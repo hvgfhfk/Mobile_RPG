@@ -30,13 +30,19 @@ public class GameManager : MonoBehaviour
             uiCurrent.Exp += GetExp;
             if (uiCurrent.Exp >= uiCurrent.MaxExp)
             {
-                uiCurrent.Exp = 0; // 경험치 초기화
-                WeaponManager.instance.UpgradeData(1);
-                WeaponManager.instance.DamageCalc();
-                ++uiCurrent.Lv; // 레벨 증가
+                PlayerLevelUp();
             }
             DataAutoSave();
         }
+    }
+
+    private void PlayerLevelUp()
+    {
+        uiCurrent.Exp = 0;
+        ++uiCurrent.Lv;
+        WeaponManager.instance.UpgradeData(1);
+        WeaponManager.instance.DamageCalc();
+
     }
 
     public void MoveLobby()

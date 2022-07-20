@@ -28,10 +28,7 @@ public class EnemySpawn : MonoBehaviour
 
     void Spawn()
     {
-        int spawnPoolInBox = Random.Range(0, spawnPools.Length);
-        int MonsterSpawnNumber = Random.Range(0, enemyPrefabs.Length); // 몬스터의 프리팹을 가져옴
-        Instantiate(enemyPrefabs[MonsterSpawnNumber], spawnPools[spawnPoolInBox].position, spawnPools[spawnPoolInBox].rotation);
-        uiCurrent.MonsterSpawnCount++;
+        SpawnClass();
         //GameObject target_Object = EnemySpwanPooling.instance.GetQueue();
         //target_Object.transform.position = spawnPools[spawnPoolInBox].position;
         
@@ -39,6 +36,14 @@ public class EnemySpawn : MonoBehaviour
         {
             CancelInvoke("Spawn");
         }
+    }
+
+    private void SpawnClass()
+    {
+        int spawnPoolInBox = Random.Range(0, spawnPools.Length);
+        int MonsterSpawnNumber = Random.Range(0, enemyPrefabs.Length); // 몬스터의 프리팹을 가져옴
+        Instantiate(enemyPrefabs[MonsterSpawnNumber], spawnPools[spawnPoolInBox].position, spawnPools[spawnPoolInBox].rotation);
+        uiCurrent.MonsterSpawnCount++;
     }
 
 
