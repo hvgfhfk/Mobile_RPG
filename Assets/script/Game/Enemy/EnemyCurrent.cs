@@ -14,12 +14,12 @@ public class EnemyCurrent : MonoBehaviour
     public int AttackDamage; // 공격 데미지
     public int StartingHealth; // 시작 hp
     public bool isDead; // 죽음 여부
+    public int MonsterExp;
 
     public Animator m_anim;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        CurrentHealth = 100;
     }
 }

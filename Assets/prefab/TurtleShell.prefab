@@ -237,6 +237,7 @@ MonoBehaviour:
   AttackDamage: 10
   StartingHealth: 100
   isDead: 0
+  MonsterExp: 10
   m_anim: {fileID: 6869540980157432504}
 --- !u!1 &837564898926189441
 GameObject:

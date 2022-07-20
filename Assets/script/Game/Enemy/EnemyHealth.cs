@@ -14,7 +14,6 @@ public class EnemyHealth : MonoBehaviour
     public GameObject itemPrefab;
 
     // 컴포넌트
-   // Animator m_anim;
     PlayerHealth playerHealth;
 
     private void Awake()
@@ -60,31 +59,35 @@ public class EnemyHealth : MonoBehaviour
     }
     void Death()
     {
-        enemyCurrent.isDead = true;
-        uiCurrent.killCount += 1; // 킬 카운트 증가
-        
-        playerHealth.recovery_strength(); // 몬스터가 죽었을 경우 플레이어의 체력 회복
-        Destroy(gameObject);
-        //EnemySpwanPooling.instance.InsertQueue(gameObject);
-
-        // 경험치 증가
-        GameManager.instance.GetExp(10);
+        isDead();
+        isGetExp();
         MonsterDropItem(); // 몬스터 아이템 드랍
+        CompletionMonsterKill();
+        //EnemySpwanPooling.instance.InsertQueue(gameObject);
+    }
 
-        gameObject.GetComponent<EnemyMove>().enabled = false;
+    private void isDead()
+    { // 몬스터 죽음
+        enemyCurrent.isDead = true;
+        uiCurrent.killCount += 1;
+        playerHealth.recovery_strength(); // 플레이어 체력 회복
+        Destroy(gameObject);
+    }
 
-        MaxKillCount();
+    private void isGetExp()
+    { // 경험치 흭득
+        GameManager.instance.GetExp(enemyCurrent.MonsterExp);
     }
 
     void MonsterDropItem()
-    {
+    { // 아이템 드랍
         var Diamond = Instantiate<GameObject>(this.itemPrefab);
         Diamond.transform.position = this.gameObject.transform.position;
         Diamond.SetActive(true);
     }
 
-    private void MaxKillCount()
-    {
+    private void CompletionMonsterKill()
+    { // 최대 킬 완
         if (uiCurrent.killCount == uiCurrent.MonsterMaxDead)
         {
             EnemySpawn.instance.SenceMoveNext();
