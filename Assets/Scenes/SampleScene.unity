@@ -1602,7 +1602,7 @@ PrefabInstance:
     - target: {fileID: 3201316790093378700, guid: 4a769d0345654f345be733003b50a3e2,
         type: 3}
       propertyPath: m_Name
-      value: Gladiator Low Poly Arena
+      value: Map
       objectReference: {fileID: 0}
     - target: {fileID: 3201316790093378700, guid: 4a769d0345654f345be733003b50a3e2,
         type: 3}
