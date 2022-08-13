@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -380,20 +380,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCurrent: {fileID: 0}
-  SwordUpgradeCount: 0
-  LevelUpDamageUpgradeCount: 0
-  SwordDamage: 5
-  NormalDamage: 5
-  DashDamage: 25
-  Diamond: 0
-  NormalCalc: 0
-  DashCalc: 0
-  Exp: 0
-  MaxExp: 100
-  Lv: 1
+  swordUpgradeCount: 0
+  levelUpDamageUpgradeCount: 0
+  swordDamage: 5
+  normalDamage: 5
+  dashDamage: 25
+  diamond: 0
+  normalCalc: 0
+  dashCalc: 0
+  exp: 0
+  maxExp: 100
+  lv: 1
   killCount: 0
-  MonsterMaxDead: 0
-  MonsterSpawnCount: 0
+  monsterMaxDead: 0
+  monsterSpawnCount: 0
   upgradeDefensiveCount: 0
   upgradeDefensive: 0
 --- !u!114 &481909170 stripped
@@ -646,7 +646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio: {fileID: 634486651}
   step: {fileID: 8300000, guid: 8606f67ab78bad741a25e3ba0384cf03, type: 3}
-  Attack: {fileID: 0}
+  attack: {fileID: 0}
 --- !u!82 &634486651
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23594282fbe2486f9ab1b683abe4c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterPrefab:
+  monsterPrefab:
   - {fileID: 6904071794430279554, guid: 2ee355537ae7844f8b044be1dc185ef5, type: 3}
   - {fileID: 412537303899343331, guid: b2cd422330b8f4142b1e2aa66c7cd6a1, type: 3}
 --- !u!1 &963194225
@@ -1371,7 +1371,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 412537303899343331, guid: b2cd422330b8f4142b1e2aa66c7cd6a1, type: 3}
   - {fileID: 6904071794430279554, guid: 2ee355537ae7844f8b044be1dc185ef5, type: 3}
-  IntervalTime: 5
+  intervalTime: 10
 --- !u!4 &1020201171
 Transform:
   m_ObjectHideFlags: 0
@@ -1562,6 +1562,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &1422212457 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5827943103602509876, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+    type: 3}
+  m_PrefabInstance: {fileID: 5827943103380839276}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1478791808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2641,7 +2647,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5827943103602509878, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
         type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1422212457}
+    - target: {fileID: 5827943103602509878, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
       propertyPath: NormalHit
+      value: 
+      objectReference: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
+        type: 3}
+    - target: {fileID: 5827943103602509878, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: normalHit
       value: 
       objectReference: {fileID: 1995403933065894, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
         type: 3}

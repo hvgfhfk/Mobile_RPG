@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478c2bfed6a02422c80859062cf571e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 5498354248783199259, guid: 07f45ddc13dbe48c2adb2a58fdc80914, type: 3}
   enemyCurrent: {fileID: 8053862991593223714}
   curState: 0
 --- !u!114 &3706342250093091708
@@ -519,16 +519,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d051a263eecdc064390c8ef5ca63e5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  EnemyName: Slime
-  CurrentHealth: 0
+  player: {fileID: 5827943103602509878, guid: 07f45ddc13dbe48c2adb2a58fdc80914, type: 3}
+  enemyName: 
+  currentHealth: 0
   traceDist: 10
   attackDist: 1.5
-  AttackDamage: 5
-  StartingHealth: 100
+  attackDamage: 0
+  startingHealth: 0
   isDead: 0
-  MonsterExp: 5
-  m_anim: {fileID: 1728007868819001362}
+  monsterExp: 0
+  anim: {fileID: 1728007868819001362}
 --- !u!1 &6977067899332002716
 GameObject:
   m_ObjectHideFlags: 0

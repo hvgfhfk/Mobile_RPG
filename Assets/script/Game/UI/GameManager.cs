@@ -19,16 +19,16 @@ public class GameManager : MonoBehaviour
 
     public void GetDiamond(int newDia)
     {
-        uiCurrent.Diamond += newDia;
+        uiCurrent.diamond += newDia;
         DataAutoSave();
     }
 
-    public void GetExp(int GetExp)
+    public void GetExp(int getExp)
     {
-        if (uiCurrent.Exp <= uiCurrent.MaxExp)
+        if (uiCurrent.exp <= uiCurrent.maxExp)
         {
-            uiCurrent.Exp += GetExp;
-            if (uiCurrent.Exp >= uiCurrent.MaxExp)
+            uiCurrent.exp += getExp;
+            if (uiCurrent.exp >= uiCurrent.maxExp)
             {
                 PlayerLevelUp();
             }
@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
 
     private void PlayerLevelUp()
     {
-        uiCurrent.Exp = 0;
-        ++uiCurrent.Lv;
+        uiCurrent.exp = 0;
+        ++uiCurrent.lv;
         WeaponManager.instance.UpgradeData(1);
         WeaponManager.instance.DamageCalc();
 
@@ -54,14 +54,14 @@ public class GameManager : MonoBehaviour
     {
         //uiCurrent.Diamond = WeaponManager.instance.Diamond;
 
-        uiCurrent.Lv = PlayerPrefs.GetInt("Level");
-        uiCurrent.Exp = PlayerPrefs.GetInt("Exp");
+        uiCurrent.lv = PlayerPrefs.GetInt("Level");
+        uiCurrent.exp = PlayerPrefs.GetInt("Exp");
         playerCurrent.startingHealth = PlayerPrefs.GetInt("upgradeDefensive");
     }
     public void DataAutoSave() // 데이터 세이브
     {
-        PlayerPrefs.SetInt("Exp", uiCurrent.Exp);
-        PlayerPrefs.SetInt("Level", uiCurrent.Lv);
-        PlayerPrefs.SetInt("Diamond", uiCurrent.Diamond);
+        PlayerPrefs.SetInt("Exp", uiCurrent.exp);
+        PlayerPrefs.SetInt("Level", uiCurrent.lv);
+        PlayerPrefs.SetInt("Diamond", uiCurrent.diamond);
     }
 }

@@ -12,10 +12,7 @@ public class Defensivepower : MonoBehaviour
     private UI uiCurrent;
 
     // 다이아 부족 메세지
-    public GameObject Shortage;
-
-    //public int upgradeCount;
-    //public int upgradeDefensive;
+    public GameObject shortage;
 
     private void Awake()
     {
@@ -25,12 +22,12 @@ public class Defensivepower : MonoBehaviour
 
     public void UpgradeDefensivePower()
     {
-        if(uiCurrent.Diamond < 100)
+        if(uiCurrent.diamond < 100)
         {
-            Shortage.SetActive(true);
+            shortage.SetActive(true);
             UIFade.instance.StartCoroutine("FadeIn");
         }
-        else if(uiCurrent.Diamond >= 100)
+        else if(uiCurrent.diamond >= 100)
         {
             UseDiamond();
             DataAutoSave();
@@ -39,7 +36,7 @@ public class Defensivepower : MonoBehaviour
 
     private void UseDiamond()
     { // 다이아 몬드 사용
-        uiCurrent.Diamond -= 100;
+        uiCurrent.diamond -= 100;
         UpgradeDefensive();
     }
 
@@ -51,13 +48,13 @@ public class Defensivepower : MonoBehaviour
 
     public void DataAutoLoad()
     {
-        uiCurrent.Diamond = PlayerPrefs.GetInt("Diamond");
+        uiCurrent.diamond = PlayerPrefs.GetInt("Diamond");
         uiCurrent.upgradeDefensive = PlayerPrefs.GetInt("Defensive");
     }
 
     public void DataAutoSave()
     {
-        PlayerPrefs.SetInt("Diamond", uiCurrent.Diamond);
+        PlayerPrefs.SetInt("Diamond", uiCurrent.diamond);
         PlayerPrefs.SetInt("DefensiveCount", uiCurrent.upgradeDefensiveCount);
         PlayerPrefs.SetInt("upgradeDefensive", playerCurrent.startingHealth + uiCurrent.upgradeDefensive);
         PlayerPrefs.SetInt("Defensive", uiCurrent.upgradeDefensive);

@@ -7,9 +7,8 @@ public class UIFade : MonoBehaviour
 {
     public static UIFade instance;
     public Text text;
-    public GameObject Shortage;
+    public GameObject shortage;
     
-
     private void Awake()
     {
         UIFade.instance = this;
@@ -25,8 +24,7 @@ public class UIFade : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             text.color = new Color(255, 0, 0, fadeCount);
         }
-        Shortage.SetActive(false);
+        shortage.SetActive(false);
         text.color = new Color(255, 0, 0, 255);
     }
-
 }

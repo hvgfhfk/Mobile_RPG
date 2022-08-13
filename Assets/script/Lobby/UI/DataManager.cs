@@ -10,23 +10,23 @@ public class DataManager : MonoBehaviour
     [SerializeField]
     private UI uiCurrent;
     [SerializeField]
-    private Slider expslider;
+    private Slider expSlider;
     [SerializeField]
-    private Text Diamond;
+    private Text diamond;
     [SerializeField]
-    private Text Exp;
+    private Text exp;
     [SerializeField]
-    private Text Level;
+    private Text level;
     [SerializeField]
-    private Text UpgradeCount;
+    private Text upgradeCount;
     [SerializeField]
-    private Text DefensiveCount;
+    private Text defensiveCount;
 
     private void Awake()
     {
-        Diamond = GameObject.Find("DiamondCount").GetComponent<Text>();
-        Exp = GameObject.Find("TextExp").GetComponent<Text>();
-        Level = GameObject.Find("TextLevel").GetComponent<Text>();
+        diamond = GameObject.Find("DiamondCount").GetComponent<Text>();
+        exp = GameObject.Find("TextExp").GetComponent<Text>();
+        level = GameObject.Find("TextLevel").GetComponent<Text>();
 
         //  LoadData();
         InvokeRepeating("LoadData", 0.1f, 0.1f);
@@ -34,12 +34,12 @@ public class DataManager : MonoBehaviour
 
     void LoadData()
     {
-        Diamond.text = PlayerPrefs.GetInt("Diamond").ToString();
-        Exp.text = PlayerPrefs.GetInt("Exp").ToString() + " / 100";
-        Level.text = PlayerPrefs.GetInt("Level").ToString() + " Lv";
-        expslider.value = PlayerPrefs.GetInt("Exp");
+        diamond.text = PlayerPrefs.GetInt("Diamond").ToString();
+        exp.text = PlayerPrefs.GetInt("Exp").ToString() + " / 100";
+        level.text = PlayerPrefs.GetInt("Level").ToString() + " Lv";
+        expSlider.value = PlayerPrefs.GetInt("Exp");
        // playerCurrent.startingHealth = PlayerPrefs.GetInt("StartingHealth");
-        UpgradeCount.text = "강화 횟수 : " + PlayerPrefs.GetInt("SwordUpgradeCount").ToString();
-        DefensiveCount.text = "강화 횟수 : " + PlayerPrefs.GetInt("DefensiveCount").ToString();
+        upgradeCount.text = "강화 횟수 : " + PlayerPrefs.GetInt("SwordUpgradeCount").ToString();
+        defensiveCount.text = "강화 횟수 : " + PlayerPrefs.GetInt("DefensiveCount").ToString();
     }
 }

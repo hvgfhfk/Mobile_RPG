@@ -8,8 +8,8 @@ public class PlayerSoundPlay : MonoBehaviour
     {
         Manager.instance.manager_SE.audio.PlayOneShot(step);
     }
-    public void PlayAttackSound(AudioClip Attack)
+    public void PlayAttackSound(AudioClip attack)
     {
-        Manager.instance.manager_SE.audio.PlayOneShot(Attack);
+        Manager.instance.manager_SE.audio.PlayOneShot(attack);
     }
 }

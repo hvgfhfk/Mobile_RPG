@@ -19,7 +19,7 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         uiCurrent = GameObject.Find("Manager").GetComponent<UI>();
-        enemyCurrent.CurrentHealth = enemyCurrent.StartingHealth;
+        enemyCurrent.currentHealth = enemyCurrent.startingHealth;
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
         //StartCoroutine("StartDamage");
     }
@@ -30,12 +30,12 @@ public class EnemyHealth : MonoBehaviour
         hudText.transform.position = hudPos.position;
         hudText.GetComponent<DamageText>().damage = amount;
 
-        enemyCurrent.m_anim.SetTrigger("isGetHit");
+        enemyCurrent.anim.SetTrigger("isGetHit");
 
-        enemyCurrent.CurrentHealth -= amount;
+        enemyCurrent.currentHealth -= amount;
 
         // 몬스터 죽음 
-        if (enemyCurrent.CurrentHealth <= 0 && !enemyCurrent.isDead)
+        if (enemyCurrent.currentHealth <= 0 && !enemyCurrent.isDead)
         {
             Death();
         }
@@ -59,36 +59,36 @@ public class EnemyHealth : MonoBehaviour
     }
     void Death()
     {
-        isDead();
-        isGetExp();
+        Dead();
+        GetExp();
         MonsterDropItem(); // 몬스터 아이템 드랍
         CompletionMonsterKill();
         //EnemySpwanPooling.instance.InsertQueue(gameObject);
     }
 
-    private void isDead()
+    private void Dead()
     { // 몬스터 죽음
         enemyCurrent.isDead = true;
         uiCurrent.killCount += 1;
-        playerHealth.recovery_strength(); // 플레이어 체력 회복
+        playerHealth.RecoveryStrength(); // 플레이어 체력 회복
         Destroy(gameObject);
     }
 
-    private void isGetExp()
+    private void GetExp()
     { // 경험치 흭득
-        GameManager.instance.GetExp(enemyCurrent.MonsterExp);
+        GameManager.instance.GetExp(enemyCurrent.monsterExp);
     }
 
     void MonsterDropItem()
     { // 아이템 드랍
-        var Diamond = Instantiate<GameObject>(this.itemPrefab);
-        Diamond.transform.position = this.gameObject.transform.position;
-        Diamond.SetActive(true);
+        var diamond = Instantiate<GameObject>(this.itemPrefab);
+        diamond.transform.position = this.gameObject.transform.position;
+        diamond.SetActive(true);
     }
 
     private void CompletionMonsterKill()
     { // 최대 킬 완
-        if (uiCurrent.killCount == uiCurrent.MonsterMaxDead)
+        if (uiCurrent.killCount == uiCurrent.monsterMaxDead)
         {
             EnemySpawn.instance.SenceMoveNext();
             

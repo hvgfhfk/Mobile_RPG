@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviour
 {
-    public GameObject upgradewindow;
+    public GameObject upgradeWindow;
 
     public void MoveGameScene()
     {
@@ -13,10 +13,10 @@ public class LobbyManager : MonoBehaviour
 
     public void UpgradeExit()
     {
-        upgradewindow.SetActive(false);
+        upgradeWindow.SetActive(false);
     }
     public void UpgradeOpen()
     {
-        upgradewindow.SetActive(true);
+        upgradeWindow.SetActive(true);
     }
 }

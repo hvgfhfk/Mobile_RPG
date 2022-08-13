@@ -6,58 +6,58 @@ public class EnemySpwanPooling : MonoBehaviour
 {
     public static EnemySpwanPooling instance;
 
-    public GameObject[] MonsterPrefab = null;
+    public GameObject[] monsterPrefab = null;
 
-    public Queue<GameObject> Monster_queue = new Queue<GameObject>();
+    public Queue<GameObject> monsterQueue = new Queue<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
 
-        GameObject SpawnPoolingManager = new GameObject("SpawnPooling");
+        GameObject spawnPoolingManager = new GameObject("SpawnPooling");
 
-        createNewObject(1);
+        CreateNewObject(1);
     }
-    void createNewObject(int Count)
+    void CreateNewObject(int count)
     {
-        for (int i = 0; i < Count; i++)
+        for (int i = 0; i < count; i++)
         { // 오브젝트 큐에 담을 오브젝트 (비활성)
 
-            int randomCount = Random.Range(0, MonsterPrefab.Length);
+            int randomCount = Random.Range(0, monsterPrefab.Length);
 
-            GameObject target_object = Instantiate(MonsterPrefab[randomCount], transform); // 오브젝트를 담을 위치
-            Monster_queue.Enqueue(target_object);
+            GameObject target_object = Instantiate(monsterPrefab[randomCount], transform); // 오브젝트를 담을 위치
+            monsterQueue.Enqueue(target_object);
             target_object.SetActive(false);
         }
     }
 
-    public void InsertQueue(GameObject Prefab_object)
+    public void InsertQueue(GameObject prefabObject)
     { // 대기열에 다시 넣기 
-        Monster_queue.Enqueue(Prefab_object);
-        Prefab_object.SetActive(false);
+        monsterQueue.Enqueue(prefabObject);
+        prefabObject.SetActive(false);
     }
 
     public GameObject GetQueue()
     { // 꺼내기
 
-        if (Monster_queue.Count > 0)
+        if (monsterQueue.Count > 0)
         {
-            GameObject target_object = Monster_queue.Dequeue();
-            target_object.transform.SetParent(null); // 오브젝트를 꺼낼 위치 
-            target_object.SetActive(true);
+            GameObject targetObject = monsterQueue.Dequeue();
+            targetObject.transform.SetParent(null); // 오브젝트를 꺼낼 위치 
+            targetObject.SetActive(true);
             //gameObject.GetComponent<SphereCollider>().enabled = true;
             
             //GetComponent<SphereCollider>().enabled = true;
             
-            return target_object;
+            return targetObject;
         }
         else
         { // 오브젝트가 부족하면 생성후 활성화
 
             int randomCount = Random.Range(0, 1);
 
-            GameObject newObject = Instantiate(MonsterPrefab[randomCount], transform);
+            GameObject newObject = Instantiate(monsterPrefab[randomCount], transform);
             newObject.transform.SetParent(null);
             newObject.SetActive(true);
 

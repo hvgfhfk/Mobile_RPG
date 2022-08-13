@@ -24,25 +24,25 @@ public class WeaponManager : MonoBehaviour
     {
         DataAutoLoad();
         // 데미지 계산
-        uiCurrent.NormalCalc = uiCurrent.SwordDamage + uiCurrent.NormalDamage + uiCurrent.LevelUpDamageUpgradeCount;
-        uiCurrent.DashCalc = uiCurrent.SwordDamage + uiCurrent.DashDamage + uiCurrent.LevelUpDamageUpgradeCount;
+        uiCurrent.normalCalc = uiCurrent.swordDamage + uiCurrent.normalDamage + uiCurrent.levelUpDamageUpgradeCount;
+        uiCurrent.dashCalc = uiCurrent.swordDamage + uiCurrent.dashDamage + uiCurrent.levelUpDamageUpgradeCount;
 
     }
 
-    public void UpgradeData(int UpgradeLv)
+    public void UpgradeData(int upgradeLv)
     { // 레벨업
-        uiCurrent.LevelUpDamageUpgradeCount += UpgradeLv;
+        uiCurrent.levelUpDamageUpgradeCount += upgradeLv;
         DataAutoSave();
     }
 
     public void SwordUpgread()
     {
-        if (uiCurrent.Diamond < 100)
+        if (uiCurrent.diamond < 100)
         {
             Shortage.SetActive(true);
             UIFade.instance.StartCoroutine("FadeIn");
         }
-        else if(uiCurrent.Diamond >= 100)
+        else if(uiCurrent.diamond >= 100)
         {
             UseDiamond();
             DataAutoSave();
@@ -51,29 +51,29 @@ public class WeaponManager : MonoBehaviour
 
     private void UseDiamond()
     {
-        uiCurrent.Diamond -= 100; // 다이아 사용
+        uiCurrent.diamond -= 100; // 다이아 사용
         UpgradeSwordPower();
     }
 
     private void UpgradeSwordPower()
     {
-        uiCurrent.SwordDamage += 5; // 공격력 증가
-        uiCurrent.SwordUpgradeCount++;
+        uiCurrent.swordDamage += 5; // 공격력 증가
+        uiCurrent.swordUpgradeCount++;
     }
 
     public void DataAutoLoad()
     {
-        uiCurrent.Diamond = PlayerPrefs.GetInt("Diamond");
-        uiCurrent.SwordDamage = PlayerPrefs.GetInt("SwordDamage");
-        uiCurrent.LevelUpDamageUpgradeCount = PlayerPrefs.GetInt("LevelUpDamageUpgradeCount");
-        uiCurrent.SwordUpgradeCount = PlayerPrefs.GetInt("SwordUpgradeCount");
+        uiCurrent.diamond = PlayerPrefs.GetInt("Diamond");
+        uiCurrent.swordDamage = PlayerPrefs.GetInt("SwordDamage");
+        uiCurrent.levelUpDamageUpgradeCount = PlayerPrefs.GetInt("LevelUpDamageUpgradeCount");
+        uiCurrent.swordUpgradeCount = PlayerPrefs.GetInt("SwordUpgradeCount");
     }
 
     public void DataAutoSave()
     {
-        PlayerPrefs.SetInt("Diamond", uiCurrent.Diamond);
-        PlayerPrefs.SetInt("SwordDamage", uiCurrent.SwordDamage);
-        PlayerPrefs.SetInt("LevelUpDamageUpgradeCount", uiCurrent.LevelUpDamageUpgradeCount);
-        PlayerPrefs.SetInt("SwordUpgradeCount", uiCurrent.SwordUpgradeCount);
+        PlayerPrefs.SetInt("Diamond", uiCurrent.diamond);
+        PlayerPrefs.SetInt("SwordDamage", uiCurrent.swordDamage);
+        PlayerPrefs.SetInt("LevelUpDamageUpgradeCount", uiCurrent.levelUpDamageUpgradeCount);
+        PlayerPrefs.SetInt("SwordUpgradeCount", uiCurrent.swordUpgradeCount);
     }
 }

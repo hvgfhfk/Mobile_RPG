@@ -8,19 +8,19 @@ public class EnemyAttack : MonoBehaviour
     private EnemyCurrent enemyCurrent;
 
     PlayerHealth playerHealth;
-    EnemyMove enemymove;
+    EnemyMove enemyMove;
     GameObject player; // 공격 대상
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
-        enemymove = GetComponent<EnemyMove>();
+        enemyMove = GetComponent<EnemyMove>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == player && enemymove.curState == EnemyMove.CurrentState.attack)
+        if(other.gameObject == player && enemyMove.curState == EnemyMove.CurrentState.attack)
         {
             Attack();
         }
@@ -29,7 +29,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if(playerHealth.currentHealth > 0)
         {
-            playerHealth.TakeDamage(enemyCurrent.AttackDamage);
+            playerHealth.TakeDamage(enemyCurrent.attackDamage);
         }
         else if(playerHealth.currentHealth <= 0)
         {

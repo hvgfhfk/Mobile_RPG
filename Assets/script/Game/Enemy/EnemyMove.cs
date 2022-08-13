@@ -63,20 +63,20 @@ public class EnemyMove : MonoBehaviour
             {
                 case CurrentState.idle:
                     //nav.Stop();
-                    enemyCurrent.m_anim.SetBool("isAttack", false);
-                    enemyCurrent.m_anim.SetBool("isTrace", false);
+                    enemyCurrent.anim.SetBool("isAttack", false);
+                    enemyCurrent.anim.SetBool("isTrace", false);
                     break;
 
                 case CurrentState.trace:
                     nav.destination = player.position;
                     //av.Resume();
-                    enemyCurrent.m_anim.SetBool("isAttack", false);
-                    enemyCurrent.m_anim.SetBool("isTrace", true);
+                    enemyCurrent.anim.SetBool("isAttack", false);
+                    enemyCurrent.anim.SetBool("isTrace", true);
                     break;
                 case CurrentState.attack:
                     //nav.Stop();
-                    enemyCurrent.m_anim.SetBool("isTrace", false);
-                    enemyCurrent.m_anim.SetBool("isAttack", true);
+                    enemyCurrent.anim.SetBool("isTrace", false);
+                    enemyCurrent.anim.SetBool("isAttack", true);
                     break;
                 case CurrentState.dead:
 

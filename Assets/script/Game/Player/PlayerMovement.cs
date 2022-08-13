@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
         playerAttack = GetComponent<PlayerAttack>();
     }
 
-    public void onStickChanged(Vector2 stickPos)
+    public void OnStickChanged(Vector2 stickPos)
     {
         h = stickPos.x;
         v = stickPos.y;
@@ -30,9 +30,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Rotation()
     {
-        if (playerCurrent.p_anim)
+        if (playerCurrent.anim)
         {
-            playerCurrent.p_anim.SetFloat("Speed", (h * h + v * v));
+            playerCurrent.anim.SetFloat("Speed", (h * h + v * v));
 
             Rigidbody rigidbody = GetComponent<Rigidbody>();
 
@@ -51,28 +51,28 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnAttackDown()
     {
-        playerCurrent.attacking = true;
-        playerCurrent.p_anim.SetBool("Combo", true);
+        playerCurrent.isAttackStatus = true;
+        playerCurrent.anim.SetBool("Combo", true);
         StartCoroutine(StartAttack());
     }
 
     public void OnAttackUp()
     {
-        playerCurrent.p_anim.SetBool("Combo", false);
-        playerCurrent.attacking = false;
+        playerCurrent.anim.SetBool("Combo", false);
+        playerCurrent.isAttackStatus = false;
         //Destroy(NormalHit, 2.0f);
     }
 
     IEnumerator StartAttack()
     {
-        if (Time.time - playerCurrent.LastAttackTime > 1f)
+        if (Time.time - playerCurrent.lastAttackTime > 1f)
         {
-            playerCurrent.LastAttackTime = Time.time; // 선언된 시점부터 시간 계산
-            while (playerCurrent.attacking)
+            playerCurrent.lastAttackTime = Time.time; // 선언된 시점부터 시간 계산
+            while (playerCurrent.isAttackStatus)
             {
-                playerCurrent.p_anim.SetTrigger("AttackStart");
+                playerCurrent.anim.SetTrigger("AttackStart");
                 playerAttack.NormalAttack();
-                playerCurrent.effect.Normal_effect();
+                playerCurrent.effect.Normal_Effect();
                 //Instantiate(NormalHit, transform.position, Quaternion.identity);
 
                 yield return new WaitForSeconds(1f);
@@ -83,11 +83,11 @@ public class PlayerMovement : MonoBehaviour
     public void OnDashDown()
     {
 
-        if (Time.time - playerCurrent.LastDashTime > 1f)
+        if (Time.time - playerCurrent.lastDashTime > 1f)
         {
-            playerCurrent.dashing = true;
-            playerCurrent.LastDashTime = Time.time;
-            playerCurrent.p_anim.SetTrigger("Dash");
+            playerCurrent.isDashStatus = true;
+            playerCurrent.lastDashTime = Time.time;
+            playerCurrent.anim.SetTrigger("Dash");
             playerAttack.DashAttack();
             playerCurrent.effect.dashing_Effect();
         }
@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnDashUp()
     {
-        playerCurrent.dashing = false;
+        playerCurrent.isDashStatus = false;
     }
 
 }

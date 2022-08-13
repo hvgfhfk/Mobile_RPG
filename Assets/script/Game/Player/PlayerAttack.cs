@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
             EnemyHealth enemy = one.GetComponent<EnemyHealth>();
             if(enemy != null)
             {
-                StartCoroutine(enemy.StartDamage(uiCurrent.NormalCalc, transform.position, 0.5f, 0.5f));
+                StartCoroutine(enemy.StartDamage(uiCurrent.normalCalc, transform.position, 0.5f, 0.5f));
             }
         }
     }
@@ -56,7 +56,7 @@ public class PlayerAttack : MonoBehaviour
 
             if(enemy != null)
             {
-                StartCoroutine(enemy.StartDamage(uiCurrent.DashCalc, transform.position, 0.1f, 0.1f));
+                StartCoroutine(enemy.StartDamage(uiCurrent.dashCalc, transform.position, 0.1f, 0.1f));
             }
         }
     }

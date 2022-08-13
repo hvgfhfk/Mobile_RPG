@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,13 +153,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCurrent: {fileID: 260953304}
-  uiCurrent: {fileID: 0}
-  expslider: {fileID: 1832722741}
-  Diamond: {fileID: 1132180743}
-  Exp: {fileID: 584968813}
-  Level: {fileID: 1452734986}
-  UpgradeCount: {fileID: 863989878}
-  DefensiveCount: {fileID: 1547540165}
+  uiCurrent: {fileID: 2077016131}
+  expSlider: {fileID: 1832722741}
+  diamond: {fileID: 1132180743}
+  exp: {fileID: 584968813}
+  level: {fileID: 1452734986}
+  upgradeCount: {fileID: 863989878}
+  defensiveCount: {fileID: 1547540165}
 --- !u!4 &45503854
 Transform:
   m_ObjectHideFlags: 0
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d0107d5d51558d4aadf17308bf9e4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradewindow: {fileID: 2008800283}
+  upgradeWindow: {fileID: 2008800283}
 --- !u!4 &230397342
 Transform:
   m_ObjectHideFlags: 0
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCurrent: {fileID: 260953304}
   uiCurrent: {fileID: 2077016131}
-  Shortage: {fileID: 307540526}
+  shortage: {fileID: 307540526}
 --- !u!1001 &250736608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -486,6 +486,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5827943103602509878, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
         type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1144890658}
+    - target: {fileID: 5827943103602509878, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
+      propertyPath: normalHit
+      value: 
+      objectReference: {fileID: 506929712}
+    - target: {fileID: 5827943103602509878, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+        type: 3}
       propertyPath: startingHealth
       value: 100
       objectReference: {fileID: 0}
@@ -568,7 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 307540529}
-  Shortage: {fileID: 307540526}
+  shortage: {fileID: 0}
 --- !u!114 &307540529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,6 +847,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489743587}
   m_CullTransparentMesh: 1
+--- !u!1 &506929712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5827943103379199613, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+    type: 3}
+  m_PrefabInstance: {fileID: 250736608}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &584968811
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,6 +2038,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1132180741}
   m_CullTransparentMesh: 1
+--- !u!95 &1144890658 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5827943103602509876, guid: 07f45ddc13dbe48c2adb2a58fdc80914,
+    type: 3}
+  m_PrefabInstance: {fileID: 250736608}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1165520109
 GameObject:
   m_ObjectHideFlags: 0
@@ -3245,20 +3267,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCurrent: {fileID: 260953304}
-  SwordUpgradeCount: 0
-  LevelUpDamageUpgradeCount: 0
-  SwordDamage: 5
-  NormalDamage: 5
-  DashDamage: 25
-  Diamond: 0
-  NormalCalc: 0
-  DashCalc: 0
-  Exp: 0
-  MaxExp: 100
-  Lv: 1
+  swordUpgradeCount: 0
+  levelUpDamageUpgradeCount: 0
+  swordDamage: 5
+  normalDamage: 5
+  dashDamage: 25
+  diamond: 0
+  normalCalc: 0
+  dashCalc: 0
+  exp: 0
+  maxExp: 100
+  lv: 1
   killCount: 0
-  MonsterMaxDead: 0
-  MonsterSpawnCount: 0
+  monsterMaxDead: 0
+  monsterSpawnCount: 0
   upgradeDefensiveCount: 0
   upgradeDefensive: 0
 --- !u!1 &2117569527

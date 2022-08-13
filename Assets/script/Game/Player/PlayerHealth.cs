@@ -12,8 +12,6 @@ public class PlayerHealth : MonoBehaviour
 
     // 체력 게이지 UI와 연결된 변수
     public Slider healthSlider;
-    // 주인공이 데미지 입을 때 화면을 빨갛게 만들기 위한 투명이미지
-    public Image damageImage;
 
     // 화면이 변한뒤 투명한 상태로 돌아가는 속도
     private float flashSpeed;
@@ -30,7 +28,6 @@ public class PlayerHealth : MonoBehaviour
         // playermovement 스크립트
         playerMovement = GetComponent<PlayerMovement>();
         playerAttack = GetComponent<PlayerAttack>();
-        //currentHealth = playerCurrent.startingHealth;
     }
 
     private void Start()
@@ -42,20 +39,6 @@ public class PlayerHealth : MonoBehaviour
         PlayerHpBar();
     }
 
-    private void Update()
-    {
-        if(playerCurrent.damaged)
-        {
-            damageImage.color = flashColour;
-        }
-        else
-        {
-            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
-        }
-        playerCurrent.damaged = false;
-
-    }
-
     public void TakeDamage(int amount)
     {
         // 공격 받으면 손실
@@ -64,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
         healthSlider.value = currentHealth; // *
 
         // 만약 체력 0이면
-        if(currentHealth <= 0 && !playerCurrent.isdead)
+        if(currentHealth <= 0 && !playerCurrent.isDead)
         {
             // Death 함수 호출
             Death();
@@ -76,7 +59,7 @@ public class PlayerHealth : MonoBehaviour
         OnDie();
         StopSpawn();
         StopSkillAcitve();
-        ScriptEnableOFF();
+        ScriptEnableOff();
     }
 
     private void PlayerHpBar()
@@ -86,7 +69,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = playerCurrent.startingHealth;
     }
 
-    public void recovery_strength()
+    public void RecoveryStrength()
     { // 체력 회복
         if(currentHealth <= healthSlider.maxValue)
         {
@@ -97,8 +80,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnDie()
     { // 플레이어 죽음 확인/애니메이션
-        playerCurrent.isdead = true;
-        playerCurrent.p_anim.SetTrigger("Die");
+        playerCurrent.isDead = true;
+        playerCurrent.anim.SetTrigger("Die");
     }
     private void StopSpawn()
     { // 스폰 멈추기
@@ -109,7 +92,7 @@ public class PlayerHealth : MonoBehaviour
         GameObject.Find("SkillDash").SetActive(false);
         GameObject.Find("ButtonAttack").SetActive(false);
     }
-    private void ScriptEnableOFF()
+    private void ScriptEnableOff()
     { // 움직임 스크립트 , 공격 스크립트 비활성화
         playerMovement.enabled = false;
         playerAttack.enabled = false;
