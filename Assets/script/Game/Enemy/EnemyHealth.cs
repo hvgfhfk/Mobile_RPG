@@ -66,7 +66,7 @@ public class EnemyHealth : MonoBehaviour
         //EnemySpwanPooling.instance.InsertQueue(gameObject);
     }
 
-    private void Dead()
+    private void Dead() // * 
     { // 몬스터 죽음
         enemyCurrent.isDead = true;
         uiCurrent.killCount += 1;
@@ -87,7 +87,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     private void CompletionMonsterKill()
-    { // 최대 킬 완
+    { // 최대 킬 완료
         if (uiCurrent.killCount == uiCurrent.monsterMaxDead)
         {
             EnemySpawn.instance.SenceMoveNext();
